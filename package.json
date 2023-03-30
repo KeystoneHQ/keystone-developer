@@ -1,0 +1,14 @@
+{
+  "name": "keystone-developer",
+  "version": "1.0.0",
+  "description": "Keystone Developer",
+  "scripts": {
+    "start": "docsify serve docs --open"
+  },
+  "author": "renfeng@keyst.one",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  }
+}
