@@ -1,7 +1,7 @@
-- Introduction
-  - [Overview](/introduction/)
-- Integration
-  - [Overview](/integration/overview/)
-  - [Connect](/integration/connect/)
+- [Introduction](/)
+- [Integration](/integration/)
+  - [Getting Started](/integration/getting-started)
+  - [Get Accounts](/integration/get-accounts)
   - [Sign Transaction & Message](/integration/chains/)
-    - [BTC](/integration/chains/btc/)
+    - [Bitcoin](/integration/chains/bitcoin)
+    - [Ethereum](/integration/chains/ethereum)

@@ -1,6 +1,6 @@
-# BTC
+# Ethereum
 
-## Initialize
+## Display Unsigned Transaction
 
 <!-- tabs:start -->
 
@@ -29,7 +29,7 @@
 
 <!-- tabs:end -->
 
-## Generate PSBT QR Code
+## Get Signature from Keystone
 
 <!-- tabs:start -->
 
