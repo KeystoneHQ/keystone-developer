@@ -1,5 +1,5 @@
 - [Introduction](/)
-- [Integration](/integration/)
+- [Integration](/integration/index)
   - [Getting Started](/integration/getting-started)
   - [Get Accounts](/integration/get-accounts)
   - [Sign Transaction & Message](/integration/sign/index)

@@ -33,7 +33,7 @@ if decodedQR != nil {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/MultiAccountsView.swift).
 
-Account information structure
+The MultiAccounts information structure
 
 ```swift
 struct MultiAccounts {
@@ -68,7 +68,7 @@ if (decodedQR != null) {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt).
 
-Account information structure
+The MultiAccounts information structure
 
 ```kotlin
 data class MultiAccounts (
