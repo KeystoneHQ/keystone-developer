@@ -31,7 +31,17 @@ We have created a **Swift package** to help developers to extract the account in
 
 [keystone-sdk-ios](https://github.com/KeystoneHQ/keystone-sdk-ios/)
 
-In Xcode, click `File` -> `Add Packages...`,  
+
+Simply add it to the dependencies in your Package.swift.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Boilertalk/Web3.swift.git", from: "0.6.0")
+]
+```
+
+
+Or in Xcode, click `File` -> `Add Packages...`,  
 paste `https://github.com/KeystoneHQ/keystone-sdk-ios/` in search box,  
 click `Add Package` to add `keystone-sdk-ios` into your project.
 

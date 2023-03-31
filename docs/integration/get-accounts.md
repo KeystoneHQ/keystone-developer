@@ -7,6 +7,8 @@ generate addresses and query the necessary information from the blockchain.
 
 We use the different standard to encode the account information.
 
+![](/_media/connect.png)
+
 ## Multiple Accounts
 
 Keystone hardware wallet uses [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) to encode accounts when 
@@ -59,7 +61,7 @@ import com.keystone.sdk.KeystoneSDK
 val sdk = KeystoneSDK()
 // `decodeQR` decodes given QR code content and returns accounts, or `null` when more QR codes are needed
 val decodedQR = sdk.decodeQR(qrCodeString)
-if (decodedQR == null) {
+if (decodedQR != null) {
     val accounts = sdk.parseMultiAccounts(decodedQR.cbor)
 }
 ```
