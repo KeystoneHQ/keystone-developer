@@ -7,7 +7,7 @@ Put the return result of `nextPart` into QR code.
 
 <!-- tabs:start -->
 
-#### **Swift**
+#### **iOS(Swift)**
 
 
 PSBT: Data
@@ -22,7 +22,7 @@ qrCode.nextPart() // ur:crypto-psbt/1-2/lpadaocsptcybkgdcarhhdgohdosjojkidjyzmad
 qrCode.nextPart() // ur:crypto-psbt/2-2/lpaoaocsptcybkgdcarhhdgokewdcaadaeaeaeaezmzmzmzmaojopkwtayaeaeaeaecmaebbtphhdnjstiambdassoloimwmlyhygdnlcatnbggtaevyykahaeaeaeaecmaebbaeplptoevwwtyakoonlourgofgvsjydpcaltaemyaeaeaeaeaeaeaeaeaeaeswhhtptt
 ```
 
-#### **Kotlin**
+#### **Android(Kotlin)**
 
 PSBT: ByteArray
 
@@ -46,7 +46,7 @@ PSBT ur -> PSBT ser
 
 <!-- tabs:start -->
 
-#### **Swift**
+#### **iOS(Swift)**
 
 ```swift
 import KeystoneSDK
@@ -59,7 +59,7 @@ if decodedQR != nil {
 }
 ```
 
-#### **Kotlin**
+#### **Android(Kotlin)**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK

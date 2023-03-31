@@ -7,7 +7,7 @@ Put the return result of `nextPart` into QR code.
 
 <!-- tabs:start -->
 
-#### **Swift**
+#### **iOS(Swift)**
 
 ```swift
 import KeystoneSDK
@@ -28,7 +28,7 @@ let qrCode = try keystoneSDK.eth.generateSignRequest(ethSignRequest: ethSignRequ
 let qrContent = qrCode.nextPart()
 ```
 
-#### **Kotlin**
+#### **Android(Kotlin)**
 
 PSBT: ByteArray
 
@@ -62,7 +62,7 @@ Scan the animated QR code with your application on Keystone hardware wallet afte
 
 <!-- tabs:start -->
 
-#### **Swift**
+#### **iOS(Swift)**
 
 ```swift
 import KeystoneSDK
@@ -75,7 +75,7 @@ if decodedQR != nil {
 }
 ```
 
-#### **Kotlin**
+#### **Android(Kotlin)**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK

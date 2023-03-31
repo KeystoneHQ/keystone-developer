@@ -18,7 +18,7 @@ to recover the account information provided by the Keystone hardware wallet.
 
 <!-- tabs:start -->
 
-#### **iOS**
+#### **iOS(Swift)**
 
 ```swift
 import KeystoneSDK
@@ -53,7 +53,7 @@ struct Account {
 ```
 
 
-#### **Android**
+#### **Android(Kotlin)**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK

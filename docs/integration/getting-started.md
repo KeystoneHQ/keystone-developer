@@ -25,7 +25,7 @@ In order to work with Keystone, a wallet can follow the following process:
 
 <!-- tabs:start -->
 
-#### **iOS**
+#### **iOS(Swift)**
 
 We have created a **Swift package** to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
@@ -45,9 +45,7 @@ Or in Xcode, click `File` -> `Add Packages...`,
 paste `https://github.com/KeystoneHQ/keystone-sdk-ios/` in search box,  
 click `Add Package` to add `keystone-sdk-ios` into your project.
 
-
-![img.png](/_media/sdk-ios-install.png ':size=70%')
-
+![](/_media/sdk-ios-install.png ':size=800')
 
 You can start to init the `KeystoneSDK` in your App after the package is added.
 
@@ -57,7 +55,7 @@ import KeystoneSDK
 let sdk = KeystoneSDK()
 ```
 
-#### **Android**
+#### **Android(Kotlin)**
 
 We have created an **Android library** with JitPack to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
