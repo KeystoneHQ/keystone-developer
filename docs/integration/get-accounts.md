@@ -24,7 +24,7 @@ to recover the account information provided by the Keystone hardware wallet.
 import KeystoneSDK
 
 let sdk = KeystoneSDK()
-// `decodeQR` decodes given QR code content and returns accounts, or `nil` when more QR codes are needed 
+// `decodeQR` decodes given QR code content and returns MultiAccounts object, or `nil` when more QR codes are needed
 let decodedQR = try sdk.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
     let accounts = try sdk.parseMultiAccounts(cborHex: ur.cbor)
@@ -33,33 +33,13 @@ if decodedQR != nil {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/MultiAccountsView.swift).
 
-The MultiAccounts information structure
-
-```swift
-struct MultiAccounts {
-    public var masterFingerprint: String
-    public var device: String
-    public var keys: Array<Account>
-}
-
-struct Account {
-    public var chain: String
-    public var path: String
-    public var publicKey: String
-    public var name: String
-    public var chainCode: String
-    public var extendedPublicKey: String
-}
-```
-
-
 #### **Android(Kotlin)**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
 val sdk = KeystoneSDK()
-// `decodeQR` decodes given QR code content and returns accounts, or `null` when more QR codes are needed
+// `decodeQR` decodes given QR code content and returns MultiAccounts object, or `null` when more QR codes are needed
 val decodedQR = sdk.decodeQR(qrCodeString)
 if (decodedQR != null) {
     val accounts = sdk.parseMultiAccounts(decodedQR.cbor)
@@ -68,23 +48,81 @@ if (decodedQR != null) {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt).
 
-The MultiAccounts information structure
+<!-- tabs:end -->
+
+
+The `MultiAccounts` information data structure
+
+<!-- tabs:start -->
+
+#### **iOS(Swift)**
+
+```swift
+struct MultiAccounts {
+    public var masterFingerprint: String  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
+    public var device: String  // The device name
+    public var keys: Array<Account> // An array of public keys
+}
+
+struct Account {
+    public var chain: String  // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
+    public var path: String  // The full derivation path of current key
+    public var publicKey: String // Public key in hex string
+    public var name: String  // The address name in hardware wallet
+    public var extendedPublicKey: String // The bip32 extended public key in hex string
+}
+```
+
+#### **Android(Kotlin)**
 
 ```kotlin
 data class MultiAccounts (
-    val device: String,
-    val keys: Array<Account>,
-    val masterFingerprint: String,
+    val device: String,  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
+    val keys: Array<Account>,  // The device name
+    val masterFingerprint: String,  // An array of public keys
 )
 
 data class Account(
-    var chain: String,
-    var path: String,
-    var publicKey: String,
-    var name: String,
-    private var chainCode: String,
-    private var extendedPublicKey: String,
+    var chain: String,  // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
+    var path: String,  // The full derivation path of current key
+    var publicKey: String, // Public key in hex string
+    var name: String,  // The address name in hardware wallet
 )
 ```
 
 <!-- tabs:end -->
+
+#### Example
+
+Here is a QR code which contains the account information of Solana for the mnemonic underneath.
+
+> twenty crawl clip injury guess bonus scare eager phone comfort slight invest
+
+![](/_media/connect-multi-accounts-sol.png ':size=250')
+
+The account information contains in the QR code
+
+```
+MultiAccounts (
+    masterFingerprint: "f23f9fd2",
+    device: "Keystone",
+    keys: [
+        Account(
+            chain: "SOL",
+            path: "m/44\'/501\'/O\'",
+            publicKey: "b6a368936bbd2ed057f0de520a32bd9486591f7677410d0f137bc68b6a72d47",
+            name: "SOL-O",
+            chainCode: ""',
+            extendedPublicKey: ""
+        ),
+        Account(
+            chain: "SOL",
+            path: "m/44\'/501\'/1\'",
+            publicKey: "1b3087a6762c569ab85e653634802c680c0063b8b2ec4141fd8d93b6ea5aa3",
+            name: "SOL-1",
+            chainCode: "",
+            extendedPublicKey: ""
+        )
+    ]
+)
+```
