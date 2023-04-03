@@ -9,6 +9,10 @@ We use the different standard to encode the account information.
 
 ![](/_media/connect.png)
 
+> [!Note]
+> We build an [Android demo app](https://github.com/KeystoneHQ/keystone-sdk-android-demo/) and [iOS demo app](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/)
+> using `KeystoneSDK` to parse account QR code from Keystone hardware wallet.
+
 ## Multiple Accounts
 
 Keystone hardware wallet uses [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) to encode accounts when 

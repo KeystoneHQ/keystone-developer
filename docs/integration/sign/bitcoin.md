@@ -87,6 +87,10 @@ qrCode.nextPart() // ur:crypto-psbt/3-2/lpaxaocfadhfcyjobbwdwyhdpytdehuouyfmwpzt
 qrCode.nextPart() // ur:crypto-psbt/4-2/lpaaaocfadhfcyjobbwdwyhdpyhkadgujojkidjyzmadaejsaoaeaeaeadctmhkbaarsasttnsnyptolotbbjlmyzoctsovofrhdceqzbkenwzlkaddegogtmuadaeaeaeaezmzmzmzmaovsaxaeaeaeaeaeaecmaebbmefwlrcmpfykcmlrbdiovwjehdselbdtetrofxlnfrrtaaaeaeaeaeaecmaebbfwvdemjeclenfxotidfpatbbiabwdwkttagrcpfmaeaeaeaeaeadadctfesoaaaeaeaeaeaecmaebbcfdeiesnchsprkspkgdkrslydpkbrehtcwahkklbcpamaomouolpimlykgvegdlbzocheooy
 ```
 
+> [!ATTENTION]
+> The unsigned PSBT might not always be able to encode in a single QR code,
+> don't forget to handle the scenario in which the unsigned data is too big and need to be displayed with an animated QR code.
+
 ## Get Signature from Keystone
 
 Keystone will sign the given transaction and give back the signed PSBT via QR code.
@@ -110,6 +114,7 @@ if decodedQR != nil {
     let psbt = try keystoneSDK.btc.parsePSBT(cborHex: decodedQR.cbor)
 }
 ```
+An example of continues scanning and parsing a SOL transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
 
 #### **Android(Kotlin)**
 
@@ -130,3 +135,7 @@ if (decodedQR != null) {
 The signed PSBT shown on Keystone hardware wallet.
 
 ![](/_media/sign-psbt-signature.png ':size=300')
+
+> [!ATTENTION]
+> The signed PSBT might not always be able to encode in a single QR code,
+> you need to handle the scenario in which Keystone shows it in multiple QR codes.

@@ -38,7 +38,7 @@ Keystone hardware wallet speaks.
 
 We have created a **Swift package** to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
-[keystone-sdk-ios](https://github.com/KeystoneHQ/keystone-sdk-ios/)
+[keystone-sdk-ios](https://github.com/KeystoneHQ/keystone-sdk-ios/), check all the available versions [here](https://github.com/KeystoneHQ/keystone-sdk-ios/tags)
 
 
 Simply add it to the dependencies in your Package.swift.
@@ -68,7 +68,7 @@ let keystoneSDK = KeystoneSDK()
 
 We have created an **Android library** with JitPack to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
-[keystone-sdk-android](https://github.com/KeystoneHQ/keystone-sdk-android/)
+[keystone-sdk-android](https://github.com/KeystoneHQ/keystone-sdk-android/), check all the available versions [here](https://jitpack.io/#KeystoneHQ/keystone-sdk-android)
 
 1. Add JitPack as dependency repository in your project.
     add to `build.gradle` with
@@ -109,3 +109,7 @@ val keystoneSDK = KeystoneSDK()
 ```
 
 <!-- tabs:end -->
+
+> [!Note]
+> We build an [Android demo app](https://github.com/KeystoneHQ/keystone-sdk-android-demo/) and [iOS demo app](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/)
+> using `KeystoneSDK` to parse accounts QR code, generate sign request QR code and parse signature QR code.
