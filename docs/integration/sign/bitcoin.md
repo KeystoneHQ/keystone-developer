@@ -47,6 +47,7 @@ qrCode.nextPart()
 // Check if a single QR code can contain all the transaction information
 val isSingleQRCode = qrCode.isSinglePart()
 ```
+An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
 
 <!-- tabs:end -->
 
@@ -114,7 +115,7 @@ if decodedQR != nil {
     let psbt = try keystoneSDK.btc.parsePSBT(cborHex: decodedQR.cbor)
 }
 ```
-An example of continues scanning and parsing a SOL transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of continues scanning and parsing a transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
 
 #### **Android(Kotlin)**
 
@@ -129,6 +130,7 @@ if (decodedQR != null) {
     val psbt = keystoneSDK.btc.parsePSBT(decodedQR.cbor)
 }
 ```
+An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
 
 <!-- tabs:end -->
 

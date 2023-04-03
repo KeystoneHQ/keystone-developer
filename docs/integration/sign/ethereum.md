@@ -47,7 +47,7 @@ let qrCode = try keystoneSDK.eth.generateSignRequest(ethSignRequest: ethSignRequ
 let qrContent = qrCode.nextPart()
 ```
 
-Check an example of covert an ETH unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignEthView.swift).
+An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignEthView.swift).
 
 #### **Android(Kotlin)**
 
@@ -69,6 +69,7 @@ val qrCode = keystoneSDK.eth.generateSignRequest(requestId, signData, dataType, 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
 ```
+An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
 
 <!-- tabs:end -->
 
@@ -102,7 +103,7 @@ if decodedQR != nil {
     let signature = try keystoneSDK.eth.parseSignature(cborHex: decodedQR.cbor)
 }
 ```
-An example of continues scanning and parsing a SOL transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of continues scanning and parsing a transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
 
 #### **Android(Kotlin)**
 
@@ -116,6 +117,7 @@ if (decodedQR != null) {
     val signature = keystoneSDK.eth.parseSignature(decodedQR.cbor)
 }
 ```
+An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
 
 <!-- tabs:end -->
 
