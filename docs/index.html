@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Keystone Developer</title>
+  <link rel="icon" href="_media/logo.svg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
+  <meta name="description" content="Integrating with Keystone">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
@@ -12,6 +13,10 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
+      alias: {
+        '/.*/_navbar.md': '/_navbar.md',
+        '/.*/_sidebar.md': '/_sidebar.md',
+      },
       name: 'Keystone Developer',
       repo: 'https://github.com/KeystoneHQ/',
       loadNavbar: true,
@@ -20,6 +25,12 @@
       subMaxLevel: 2,
       logo: "/_media/logo_text.svg",
       auto2top: true,
+      copyCode: {
+        buttonText : 'Copy'
+      },
+      'flexible-alerts': {
+        style: 'flat'
+      }
     }
   </script>
   <!-- Docsify v4 -->
@@ -28,5 +39,8 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-swift.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-kotlin.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-groovy.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
 </body>
 </html>
