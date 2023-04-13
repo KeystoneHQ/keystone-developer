@@ -47,7 +47,7 @@ let qrCode = try keystoneSDK.eth.generateSignRequest(ethSignRequest: ethSignRequ
 let qrContent = qrCode.nextPart()
 ```
 
-An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignEthView.swift).
+An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift).
 
 #### **Android(Kotlin)**
 
@@ -103,7 +103,7 @@ if decodedQR != nil {
     let signature = try keystoneSDK.eth.parseSignature(cborHex: decodedQR.cbor)
 }
 ```
-An example of continues scanning and parsing a transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of continues scanning and parsing an Ethereum signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift)
 
 #### **Android(Kotlin)**
 

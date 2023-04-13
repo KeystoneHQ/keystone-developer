@@ -6,3 +6,5 @@
     - [Bitcoin](/integration/sign/bitcoin)
     - [Ethereum](/integration/sign/ethereum)
     - [Solana](/integration/sign/solana)
+    - [Cosmos](/integration/sign/cosmos)
+    - [Tron(WIP)](/integration/sign/tron)

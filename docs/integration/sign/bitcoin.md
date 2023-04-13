@@ -30,7 +30,7 @@ qrCode.nextPart()
 // Check if a single QR code can contain all the transaction information
 let isSingleQRCode = qrCode.isSinglePart()
 ```
-An example of covert PSBT data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignBitcoinTxView.swift).
+An example of covert PSBT data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Bitcoin.swift).
 
 #### **Android(Kotlin)**
 
@@ -115,7 +115,7 @@ if decodedQR != nil {
     let psbt = try keystoneSDK.btc.parsePSBT(cborHex: decodedQR.cbor)
 }
 ```
-An example of continues scanning and parsing a transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of continues scanning and parsing a signed PSBT, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Bitcoin.swift)
 
 #### **Android(Kotlin)**
 

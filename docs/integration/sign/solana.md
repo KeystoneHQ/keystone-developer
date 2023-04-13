@@ -46,7 +46,7 @@ let qrCode = try keystoneSDK.sol.generateSignRequest(solSignRequest: solSignRequ
 let qrContent = qrCode.nextPart()
 ```
 
-An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of covert Solana transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Solana.swift)
 
 #### **Android(Kotlin)**
 
@@ -105,7 +105,7 @@ if decodedQR != nil {
     let signature = try keystoneSDK.sol.parseSignature(cborHex: decodedQR.cbor)
 }
 ```
-An example of continues scanning and parsing a transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of continues scanning and parsing Solana signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Solana.swift)
 
 #### **Android(Kotlin)**
 
