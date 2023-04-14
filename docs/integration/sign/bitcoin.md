@@ -112,7 +112,7 @@ let keystoneSDK = KeystoneSDK()
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
     // signed PSBT as type Data
-    let psbt = try keystoneSDK.btc.parsePSBT(cborHex: decodedQR.cbor)
+    let psbt = try keystoneSDK.btc.parsePSBT(ur: decodedQR)
 }
 ```
 An example of continues scanning and parsing a signed PSBT, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Bitcoin.swift)
@@ -127,7 +127,7 @@ val keystoneSDK = KeystoneSDK()
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
     // signed PSBT as type ByteArray
-    val psbt = keystoneSDK.btc.parsePSBT(decodedQR.cbor)
+    val psbt = keystoneSDK.btc.parsePSBT(decodedQR)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)

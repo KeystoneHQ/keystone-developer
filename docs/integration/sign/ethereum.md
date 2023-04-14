@@ -100,7 +100,7 @@ let keystoneSDK = KeystoneSDK()
 
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let signature = try keystoneSDK.eth.parseSignature(cborHex: decodedQR.cbor)
+    let signature = try keystoneSDK.eth.parseSignature(ur: decodedQR)
 }
 ```
 An example of continues scanning and parsing an Ethereum signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift)
@@ -114,7 +114,7 @@ val keystoneSDK = KeystoneSDK()
 
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val signature = keystoneSDK.eth.parseSignature(decodedQR.cbor)
+    val signature = keystoneSDK.eth.parseSignature(decodedQR)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)

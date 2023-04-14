@@ -110,7 +110,7 @@ let keystoneSDK = KeystoneSDK()
 
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let signature = try keystoneSDK.cosmos.parseSignature(cborHex: decodedQR.cbor)
+    let signature = try keystoneSDK.cosmos.parseSignature(ur: decodedQR)
 }
 ```
 An example of continues scanning and parsing a Cosmos signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Cosmos.swift)
@@ -124,7 +124,7 @@ val keystoneSDK = KeystoneSDK()
 
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val signature = keystoneSDK.cosmos.parseSignature(decodedQR.cbor)
+    val signature = keystoneSDK.cosmos.parseSignature(decodedQR)
 }
 ```
 An example of continues scanning and parsing QR code, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
