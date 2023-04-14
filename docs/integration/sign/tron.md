@@ -57,16 +57,16 @@ An example of covert an unsigned message into QR code [here](https://github.com/
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
-val requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
-val signData = "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541c79f045e4d48ad8dae00e6a6714dae1e000adfcd1215410d292c98a5eca06c2085fff993996423cf66c93b2244a9059cbb0000000000000000000000009bbce520d984c3b95ad10cb4e32a9294e6338da300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03"
-val path = "m/44'/195'/0'/0'"
-val xfp = "12121212"
-val tokenInfo = TokenInfo("TONE", "TronOne", 8)
-val address = ""
-val origin = ""
+val tronSignRequest = TronSignRequest(
+    requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    signData = "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541c79f045e4d48ad8dae00e6a6714dae1e000adfcd1215410d292c98a5eca06c2085fff993996423cf66c93b2244a9059cbb0000000000000000000000009bbce520d984c3b95ad10cb4e32a9294e6338da300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03",
+    path = "m/44'/195'/0'/0'",
+    xfp = "f23f9fd2",
+    tokenInfo = TokenInfo("TONE", "TronOne", 8)
+)
 
 val keystoneSDK = KeystoneSDK()
-val qrCode = keystoneSDK.tron.generateSignRequest(requestId, signData, path, xfp, tokenInfo, address, origin)
+val qrCode = keystoneSDK.tron.generateSignRequest(tronSignRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()

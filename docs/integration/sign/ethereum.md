@@ -54,17 +54,18 @@ An example of covert an unsigned message into QR code [here](https://github.com/
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
-val requestId = "6c3633c0-02c0-4313-9cd7-e25f4f296729"
-val signData = "48656c6c6f2c204b657973746f6e652e"
-val dataType = KeystoneEthereumSDK.DataType.PersonalMessage
-val path = "m/44'/60'/0'/0/0"
-val xfp = "F23F9FD2"
-val address = ""
-val origin = "MetaMask"
-val chainId = 60
+val ethSignRequest = EthSignRequest(
+    requestId = "6c3633c0-02c0-4313-9cd7-e25f4f296729",
+    signData = "48656c6c6f2c204b657973746f6e652e",
+    dataType = KeystoneEthereumSDK.DataType.PersonalMessage,
+    path = "m/44'/60'/0'/0/0",
+    xfp = "F23F9FD2",
+    origin = "MetaMask",
+    chainId = 1,
+)
 
 val keystoneSDK = KeystoneSDK()
-val qrCode = keystoneSDK.eth.generateSignRequest(requestId, signData, dataType, chainId, path, xfp, address, origin)
+val qrCode = keystoneSDK.eth.generateSignRequest(ethSignRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()

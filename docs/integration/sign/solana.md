@@ -57,15 +57,16 @@ import com.keystone.sdk.KeystoneSDK
 val keystoneSDK = KeystoneSDK()
 
 // Prepare unsigned data
-val requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
-val signData = "48656c6c6f2c204b657973746f6e652e"
-val path = "m/44'/501'/0'/0'"
-val xfp = "F23F9FD2"
-val address = ""
-val origin = "Solflare"
-val signType = KeystoneSolanaSDK.SignType.Message
+val solSignRequest = SolSignRequest(
+    requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    signData = "48656c6c6f2c204b657973746f6e652e",
+    path = "m/44'/501'/0'/0'",
+    xfp = "F23F9FD2",
+    origin = "Solflare",
+    signType = KeystoneSolanaSDK.SignType.Message,
+)
 
-val res = keystoneSDK.sol.generateSignRequest(requestId, signData, path, xfp, address, origin, signType)
+val res = keystoneSDK.sol.generateSignRequest(solSignRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
