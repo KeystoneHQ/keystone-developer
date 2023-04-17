@@ -46,7 +46,7 @@ let qrCode = try keystoneSDK.sol.generateSignRequest(solSignRequest: solSignRequ
 let qrContent = qrCode.nextPart()
 ```
 
-An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of covert Solana transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Solana.swift)
 
 #### **Android(Kotlin)**
 
@@ -57,15 +57,16 @@ import com.keystone.sdk.KeystoneSDK
 val keystoneSDK = KeystoneSDK()
 
 // Prepare unsigned data
-val requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
-val signData = "48656c6c6f2c204b657973746f6e652e"
-val path = "m/44'/501'/0'/0'"
-val xfp = "F23F9FD2"
-val address = ""
-val origin = "Solflare"
-val signType = KeystoneSolanaSDK.SignType.Message
+val solSignRequest = SolSignRequest(
+    requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    signData = "48656c6c6f2c204b657973746f6e652e",
+    path = "m/44'/501'/0'/0'",
+    xfp = "F23F9FD2",
+    origin = "Solflare",
+    signType = KeystoneSolanaSDK.SignType.Message,
+)
 
-val res = keystoneSDK.sol.generateSignRequest(requestId, signData, path, xfp, address, origin, signType)
+val res = keystoneSDK.sol.generateSignRequest(solSignRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
@@ -102,10 +103,10 @@ let keystoneSDK = KeystoneSDK()
 
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let signature = try keystoneSDK.sol.parseSignature(cborHex: decodedQR.cbor)
+    let signature = try keystoneSDK.sol.parseSignature(ur: decodedQR)
 }
 ```
-An example of continues scanning and parsing a transaction, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction.swift)
+An example of continues scanning and parsing Solana signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Solana.swift)
 
 #### **Android(Kotlin)**
 
@@ -116,7 +117,7 @@ val keystoneSDK = KeystoneSDK()
 
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val signature = keystoneSDK.sol.parseSignature(decodedQR.cbor)
+    val signature = keystoneSDK.sol.parseSignature(decodedQR)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)

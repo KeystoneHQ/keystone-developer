@@ -108,6 +108,35 @@ import com.keystone.sdk.KeystoneSDK
 val keystoneSDK = KeystoneSDK()
 ```
 
+#### **Web(TypeScript)**
+
+> [!NOTE]
+> Working In Process
+
+
+We have created **NPM libraries** to help developers to extract the account information and sign transaction with Keystone hardware wallet.
+
+- [@keystonehq/keystone-sdk](https://www.npmjs.com/package/@keystonehq/keystone-sdk), covert transaction to QR code content, and parse QR code to signature.
+- [@keystonehq/animated-qr](https://www.npmjs.com/package/@keystonehq/animated-qr), animated QR code presenting and scanning.
+
+1. Add library as dependency in your project.
+
+```
+yarn add @keystonehq/keystone-sdk @keystonehq/animated-qr
+```
+
+```
+npm install --save @keystonehq/keystone-sdk @keystonehq/animated-qr
+```
+
+You can start to play with the `KeystoneSDK` in your App after the library has been added.
+
+```typescript
+import KeystoneSDK from "@keystonehq/keystone-sdk"
+
+let keystoneSDK = new KeystoneSDK()
+```
+
 <!-- tabs:end -->
 
 > [!Note]

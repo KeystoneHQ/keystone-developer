@@ -1,19 +1,24 @@
-# Ethereum
+# Tron(WIP)
+
+> [!NOTE]
+> Not available in Keystone hardware wallet at the moment.
 
 ## Display Unsigned Transaction
 
-For passing an unsigned Ethereum transaction or message to the Keystone hardware wallet,
+For passing an unsigned Tron transaction or message to the Keystone hardware wallet,
 `KeystoneSDK` needs the data underneath, then covert it into a QR code generator.
 
 ```js
 requestId: String // UUID for current request
 signData: String // the serialized unsigned transaction data, in hex string
-dataType: Enum // supported data type. Currently supports transaction, typed transaction, personal message and typed data
-chainId: Int // the EVM chain ID
 path: String // the HD path to tell which private key should be used to sign the data
 xfp: String // master fingerprint provided by Keystone when getting accounts
 origin: String(Optional) // source of the request, wallet name etc
-address: String(Optional) // the address for request this signing
+tokenInfo: Optional ( // The token information if you are transfer TRC10 or TRC20 tokens
+  name: String // the token name
+  symbol: String // the token symbol
+  decimals: Number // the decimal of token
+)
 ```
 
 All you need is to give the result of `nextPart` to a QR code presenter component,
@@ -31,46 +36,42 @@ Keystone can then scan and parse the transaction data.
 ```swift
 import KeystoneSDK
 
-let ethSignRequest = EthSignRequest(
-    requestId: "6c3633c0-02c0-4313-9cd7-e25f4f296729",
-    signData: "48656c6c6f2c204b657973746f6e652e",
-    dataType: .personalMessage,
-    chainId: 1,
-    path: "m/44'/60'/0'/0/0",
-    xfp: "F23F9FD2",
-    origin: "MetaMask"
+let tronSignRequest = TronSignRequest(
+    requestId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    signData: "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541c79f045e4d48ad8dae00e6a6714dae1e000adfcd1215410d292c98a5eca06c2085fff993996423cf66c93b2244a9059cbb0000000000000000000000009bbce520d984c3b95ad10cb4e32a9294e6338da300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03",
+    path: "m/44'/195'/0'/0'",
+    xfp: "f23f9fd2",
+    tokenInfo: TokenInfo(name: "TONE", symbol: "TronOne", decimals: 8)
 )
 let keystoneSDK = KeystoneSDK()
-let qrCode = try keystoneSDK.eth.generateSignRequest(ethSignRequest: ethSignRequest)
+let qrCode = try keystoneSDK.tron.generateSignRequest(tronSignRequest: tronSignRequest)
 
 // The QR code content which you can put in a QR code presenter.
 let qrContent = qrCode.nextPart()
 ```
 
-An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift).
+An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Tron.swift).
 
 #### **Android(Kotlin)**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
-val ethSignRequest = EthSignRequest(
-    requestId = "6c3633c0-02c0-4313-9cd7-e25f4f296729",
-    signData = "48656c6c6f2c204b657973746f6e652e",
-    dataType = KeystoneEthereumSDK.DataType.PersonalMessage,
-    path = "m/44'/60'/0'/0/0",
-    xfp = "F23F9FD2",
-    origin = "MetaMask",
-    chainId = 1,
+val tronSignRequest = TronSignRequest(
+    requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    signData = "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a1541c79f045e4d48ad8dae00e6a6714dae1e000adfcd1215410d292c98a5eca06c2085fff993996423cf66c93b2244a9059cbb0000000000000000000000009bbce520d984c3b95ad10cb4e32a9294e6338da300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03",
+    path = "m/44'/195'/0'/0'",
+    xfp = "f23f9fd2",
+    tokenInfo = TokenInfo("TONE", "TronOne", 8)
 )
 
 val keystoneSDK = KeystoneSDK()
-val qrCode = keystoneSDK.eth.generateSignRequest(ethSignRequest)
+val qrCode = keystoneSDK.tron.generateSignRequest(tronSignRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
 ```
-An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
+An example of covert a Tron transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
 
 <!-- tabs:end -->
 
@@ -80,7 +81,7 @@ You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity 
 
 The QR code generated for the unsigned message above.
 
-![](/_media/sign-eth-message.png ':size=300')
+![](/_media/sign-tron-trc20.gif ':size=300')
 
 > [!ATTENTION]
 > The unsigned data might not always be able to encode in a single QR code,
@@ -101,10 +102,10 @@ let keystoneSDK = KeystoneSDK()
 
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let signature = try keystoneSDK.eth.parseSignature(ur: decodedQR)
+    let signature = try keystoneSDK.tron.parseSignature(ur: decodedQR)
 }
 ```
-An example of continues scanning and parsing an Ethereum signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift)
+An example of continues scanning and parsing a Tron signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Tron.swift)
 
 #### **Android(Kotlin)**
 
@@ -115,10 +116,10 @@ val keystoneSDK = KeystoneSDK()
 
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val signature = keystoneSDK.eth.parseSignature(decodedQR)
+    val signature = keystoneSDK.tron.parseSignature(decodedQR)
 }
 ```
-An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
+An example of continues scanning and parsing QR code, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
 
 <!-- tabs:end -->
 

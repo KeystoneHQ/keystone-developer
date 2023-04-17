@@ -31,7 +31,7 @@ let sdk = KeystoneSDK()
 // `decodeQR` decodes given QR code content and returns MultiAccounts object, or `nil` when more QR codes are needed
 let decodedQR = try sdk.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let accounts = try sdk.parseMultiAccounts(cborHex: ur.cbor)
+    let accounts = try sdk.parseMultiAccounts(ur: decodedQR)
 }
 ```
 
@@ -46,7 +46,7 @@ val sdk = KeystoneSDK()
 // `decodeQR` decodes given QR code content and returns MultiAccounts object, or `null` when more QR codes are needed
 val decodedQR = sdk.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val accounts = sdk.parseMultiAccounts(decodedQR.cbor)
+    val accounts = sdk.parseMultiAccounts(decodedQR)
 }
 ```
 
