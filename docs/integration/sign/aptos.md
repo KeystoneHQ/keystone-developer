@@ -18,14 +18,6 @@ accounts: Array (
 origin: String(Optional) // source of the request, wallet name etc
 ```
 
-All you need is to give the result of `nextPart` to a QR code presenter component,
-Keystone can then scan and parse the transaction data.
-
-> **Note**  
-> The Keystone SDK might generate an infinite number of QR codes when the unsigned transaction or message contains a big chunk of data,
-> the software wallet will need to show the animated QR codes so that the Keystone hardware wallet can get all the
-> transaction data. See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
-
 <!-- tabs:start -->
 
 #### **iOS(Swift)**
@@ -42,6 +34,7 @@ let aptosSignRequest = AptosSignRequest(
     ],
     origin: "Petra"
 )
+
 let keystoneSDK = KeystoneSDK()
 let qrCode = try keystoneSDK.aptos.generateSignRequest(aptosSignRequest: aptosSignRequest);
 
@@ -56,12 +49,18 @@ An example of covert an unsigned message into QR code [here](https://github.com/
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
-val aptosSignRequest = AptosSignRequest(
-
+val accounts = ArrayList<AptosAccount>();
+accounts.add(AptosAccount(path = "m/44'/637'/0'/0'/0'", xfp = "F23F9FD2"))
+val signRequest = AptosSignRequest(
+    requestId = "17467482-2654-4058-972D-F436EFAEB38E",
+    signData = "B5E97DB07FA0BD0E5598AA3643A9BC6F6693BDDC1A9FEC9E674A461EAA00B1931248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD0455000000000000000002000000000000000000000000000000000000000000000000000000000000000104636F696E087472616E73666572010700000000000000000000000000000000000000000000000000000000000000010A6170746F735F636F696E094170746F73436F696E0002201248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD04550880969800000000000A000000000000009600000000000000ACF63C640000000002",
+    signType = KeystoneAptosSDK.SignType.Single,
+    accounts = accounts,
+    origin = "Petra"
 )
 
 val keystoneSDK = KeystoneSDK()
-val qrCode = keystoneSDK.aptos.generateSignRequest(aptosSignRequest)
+val qrCode = keystoneSDK.aptos.generateSignRequest(signRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
@@ -70,21 +69,27 @@ An example of covert transaction data into QR code [here](https://github.com/Key
 
 <!-- tabs:end -->
 
+All you need is to give the result of `nextPart` to a QR code presenter component,
+Keystone can then scan and parse the transaction data.
+
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
-> Note:
-> The bigger the fragment length, the harder the Keystone scans it.
+> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
 
 The QR code generated for the unsigned message above.
 
 ![](/_media/sign-aptos-message.png ':size=200')
 
 > [!ATTENTION]
-> The unsigned data might not always be able to encode in a single QR code,
-> don't forget to handle the scenario in which the unsigned data is too big and need to be displayed with an animated QR code.
+> The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
+> the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
+> See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 ## Get Signature from Keystone
 
 Scan the animated QR code with your application on Keystone hardware wallet after signing the data.
+
+Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
+Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
 <!-- tabs:start -->
 
@@ -128,4 +133,4 @@ Signature (
 
 > [!ATTENTION]
 > The signature might not always be able to encode in a single QR code,
-> you need to handle the scenario in which Keystone shows it in multiple QR codes.
+> don't forget to handle the scenario in which Keystone shows it in animated QR codes.

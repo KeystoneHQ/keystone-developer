@@ -5,14 +5,6 @@
 For passing an unsigned Bitcoin transaction to the Keystone hardware wallet,
 `KeystoneSDK` needs a PSBT in a hex format, then covert it into a QR code generator.
 
-All you need is to give the result of `nextPart` to a QR code presenter component,
-Keystone can then scan and parse the transaction data.
-
-> **Note**  
-> The Keystone SDK might generate an infinite number of QR codes when the unsigned transaction contains a big chunk of data,
-> the software wallet will need to show the animated QR codes so that the Keystone hardware wallet can get all the
-> transaction data. See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
-
 <!-- tabs:start -->
 
 #### **iOS(Swift)**
@@ -51,7 +43,11 @@ An example of covert transaction data into QR code [here](https://github.com/Key
 
 <!-- tabs:end -->
 
+All you need is to give the result of `nextPart` to a QR code presenter component,
+Keystone can then scan and parse the transaction data.
+
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
+> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
 
 ### Example
 An example of PSBT QR code
@@ -74,9 +70,6 @@ cHNidP8BAHECAAAAAablLQz3vsFsRU3FkJZpBvL3EdL/tyC/FBtB/QzTFGoiAAAAAAD/////AoCWmAAA
 PSBT QR Code  
 ![](/_media/sign-psbt-single.png ':size=350')
 
-> Note: 
-> The bigger the fragment length, the harder the Keystone scans it.
-
 Example of multiple QR codes with the same PSBT above, given `maxFragmentLen` is `200`
 
 ![](/_media/sign-psbt-animated.gif ':size=300')
@@ -89,16 +82,16 @@ qrCode.nextPart() // ur:crypto-psbt/4-2/lpaaaocfadhfcyjobbwdwyhdpyhkadgujojkidjy
 ```
 
 > [!ATTENTION]
-> The unsigned PSBT might not always be able to encode in a single QR code,
-> don't forget to handle the scenario in which the unsigned data is too big and need to be displayed with an animated QR code.
+> The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
+> the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
+> See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 ## Get Signature from Keystone
 
-Keystone will sign the given transaction and give back the signed PSBT via QR code.
+Keystone will sign the given transaction and give back the signed PSBT via QR code. 
 
-> **Note**  
-> Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
-> Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
+Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
+Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
 <!-- tabs:start -->
 
@@ -140,4 +133,4 @@ The signed PSBT shown on Keystone hardware wallet.
 
 > [!ATTENTION]
 > The signed PSBT might not always be able to encode in a single QR code,
-> you need to handle the scenario in which Keystone shows it in multiple QR codes.
+> don't forget to handle the scenario in which Keystone shows it in animated QR codes.
