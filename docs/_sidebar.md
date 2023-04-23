@@ -8,3 +8,4 @@
     - [Solana](/integration/sign/solana)
     - [Cosmos](/integration/sign/cosmos)
     - [Tron(WIP)](/integration/sign/tron)
+    - [Aptos](/integration/sign/aptos)
