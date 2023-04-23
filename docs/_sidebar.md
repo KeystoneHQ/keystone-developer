@@ -9,3 +9,6 @@
     - [Cosmos](/integration/sign/cosmos)
     - [Tron(WIP)](/integration/sign/tron)
     - [Aptos](/integration/sign/aptos)
+    - [Litecoin(WIP)](/integration/sign/litecoin)
+    - [DigitalCash(WIP)](/integration/sign/dash)
+    - [BitcoinCash(WIP)](/integration/sign/bch)
