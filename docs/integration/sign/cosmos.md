@@ -17,14 +17,6 @@ accounts: Array (
 )
 ```
 
-All you need is to give the result of `nextPart` to a QR code presenter component,
-Keystone can then scan and parse the transaction data.
-
-> **Note**  
-> The Keystone SDK might generate an infinite number of QR codes when the unsigned transaction or message contains a big chunk of data,
-> the software wallet will need to show the animated QR codes so that the Keystone hardware wallet can get all the
-> transaction data. See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
-
 <!-- tabs:start -->
 
 #### **iOS(Swift)**
@@ -44,6 +36,7 @@ let cosmosSignRequest = CosmosSignRequest(
         )
     ]
 )
+
 let keystoneSDK = KeystoneSDK()
 let qrCode = try keystoneSDK.cosmos.generateSignRequest(cosmosSignRequest: cosmosSignRequest)
 
@@ -72,7 +65,6 @@ val cosmosSignRequest = CosmosSignRequest(
     accounts = accounts,
     dataType = KeystoneCosmosSDK.DataType.Amino
 )
-
 val keystoneSDK = KeystoneSDK()
 val qrCode = keystoneSDK.cosmos.generateSignRequest(cosmosSignRequest)
 
@@ -83,21 +75,27 @@ An example of covert Cosmos transaction data into QR code [here](https://github.
 
 <!-- tabs:end -->
 
+All you need is to give the result of `nextPart` to a QR code presenter component,
+Keystone can then scan and parse the transaction data.
+
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
-> Note:
-> The bigger the fragment length, the harder the Keystone scans it.
+> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
 
 The QR code generated for the unsigned message above.
 
 ![](/_media/sign-cosmos-amino.gif ':size=300')
 
 > [!ATTENTION]
-> The unsigned data might not always be able to encode in a single QR code,
-> don't forget to handle the scenario in which the unsigned data is too big and need to be displayed with an animated QR code.
+> The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
+> the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
+> See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 ## Get Signature from Keystone
 
 Scan the animated QR code with your application on Keystone hardware wallet after signing the data.
+
+Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
+Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
 <!-- tabs:start -->
 
@@ -142,4 +140,4 @@ Signature (
 
 > [!ATTENTION]
 > The signature might not always be able to encode in a single QR code,
-> you need to handle the scenario in which Keystone shows it in multiple QR codes.
+> don't forget to handle the scenario in which Keystone shows it in animated QR codes.

@@ -1,19 +1,21 @@
-# Ethereum
+# Aptos
 
 ## Display Unsigned Transaction
 
-For passing an unsigned Ethereum transaction or message to the Keystone hardware wallet,
+For passing an unsigned Aptos transaction or message to the Keystone hardware wallet,
 `KeystoneSDK` needs the data underneath, then covert it into a QR code generator.
 
 ```js
 requestId: String // UUID for current request
 signData: String // the serialized unsigned transaction data, in hex string
-dataType: Enum // supported data type. Currently supports transaction, typed transaction, personal message and typed data
+signType: Enum // supported data type. Currently supports single, multi and message
 chainId: Int // the EVM chain ID
-path: String // the HD path to tell which private key should be used to sign the data
-xfp: String // master fingerprint provided by Keystone when getting accounts
+accounts: Array (
+    path: String // the HD path to tell which private key should be used to sign the data
+    xfp: String // master fingerprint provided by Keystone when getting accounts
+    key: String(Optional) // the public key for request this signing
+)
 origin: String(Optional) // source of the request, wallet name etc
-address: String(Optional) // the address for request this signing
 ```
 
 <!-- tabs:start -->
@@ -23,42 +25,42 @@ address: String(Optional) // the address for request this signing
 ```swift
 import KeystoneSDK
 
-let ethSignRequest = EthSignRequest(
-    requestId: "6c3633c0-02c0-4313-9cd7-e25f4f296729",
-    signData: "48656c6c6f2c204b657973746f6e652e",
-    dataType: .personalMessage,
-    chainId: 1,
-    path: "m/44'/60'/0'/0/0",
-    xfp: "F23F9FD2",
-    origin: "MetaMask"
+let aptosSignRequest = AptosSignRequest(
+    requestId: "7AFD5E09-9267-43FB-A02E-08C4A09417EC",
+    signData: "4150544F530A6D6573736167653A207665726966795F77616C6C65740A6E6F6E63653A20373134363136353534363430333235393636333033313734",
+    signType: .single,
+    accounts: [
+        AptosSignRequest.Account(path: "m/44'/637'/0'/0'/0'", xfp: "f23f9fd2")
+    ],
+    origin: "Petra"
 )
 
 let keystoneSDK = KeystoneSDK()
-let qrCode = try keystoneSDK.eth.generateSignRequest(ethSignRequest: ethSignRequest)
+let qrCode = try keystoneSDK.aptos.generateSignRequest(aptosSignRequest: aptosSignRequest);
 
 // The QR code content which you can put in a QR code presenter.
 let qrContent = qrCode.nextPart()
 ```
 
-An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift).
+An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Aptos.swift).
 
 #### **Android(Kotlin)**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
-val ethSignRequest = EthSignRequest(
-    requestId = "6c3633c0-02c0-4313-9cd7-e25f4f296729",
-    signData = "48656c6c6f2c204b657973746f6e652e",
-    dataType = KeystoneEthereumSDK.DataType.PersonalMessage,
-    path = "m/44'/60'/0'/0/0",
-    xfp = "F23F9FD2",
-    origin = "MetaMask",
-    chainId = 1,
+val accounts = ArrayList<AptosAccount>();
+accounts.add(AptosAccount(path = "m/44'/637'/0'/0'/0'", xfp = "F23F9FD2"))
+val signRequest = AptosSignRequest(
+    requestId = "17467482-2654-4058-972D-F436EFAEB38E",
+    signData = "B5E97DB07FA0BD0E5598AA3643A9BC6F6693BDDC1A9FEC9E674A461EAA00B1931248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD0455000000000000000002000000000000000000000000000000000000000000000000000000000000000104636F696E087472616E73666572010700000000000000000000000000000000000000000000000000000000000000010A6170746F735F636F696E094170746F73436F696E0002201248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD04550880969800000000000A000000000000009600000000000000ACF63C640000000002",
+    signType = KeystoneAptosSDK.SignType.Single,
+    accounts = accounts,
+    origin = "Petra"
 )
 
 val keystoneSDK = KeystoneSDK()
-val qrCode = keystoneSDK.eth.generateSignRequest(ethSignRequest)
+val qrCode = keystoneSDK.aptos.generateSignRequest(signRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
@@ -75,7 +77,7 @@ You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity 
 
 The QR code generated for the unsigned message above.
 
-![](/_media/sign-eth-message.png ':size=300')
+![](/_media/sign-aptos-message.png ':size=200')
 
 > [!ATTENTION]
 > The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
@@ -100,10 +102,10 @@ let keystoneSDK = KeystoneSDK()
 
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let signature = try keystoneSDK.eth.parseSignature(ur: decodedQR)
+    let signature = try keystoneSDK.aptos.parseSignature(ur: decodedQR)
 }
 ```
-An example of continues scanning and parsing an Ethereum signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift)
+An example of continues scanning and parsing an Ethereum signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Aptos.swift)
 
 #### **Android(Kotlin)**
 
@@ -114,7 +116,7 @@ val keystoneSDK = KeystoneSDK()
 
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val signature = keystoneSDK.eth.parseSignature(decodedQR)
+    val signature = keystoneSDK.aptos.parseSignature(decodedQR)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
