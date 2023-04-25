@@ -351,6 +351,8 @@ import KeystoneSDK, {UR} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
 const Ethereum = () => {
+    const keystoneSDK = new KeystoneSDK();
+
     const onSucceed = ({type, cbor}) => {
         const signature = keystoneSDK.eth.parseSignature(new UR(Buffer.from(cbor, "hex"), type))
         console.log("signature: ", signature);
