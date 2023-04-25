@@ -6,10 +6,10 @@ For passing an unsigned Ethereum transaction or message to the Keystone hardware
 `KeystoneSDK` needs the data underneath, then covert it into a QR code generator.
 
 Currently, Keystone supports signing
-- Legacy Transaction
-- EIP1559 Transaction
-- Personal Message
-- Typed Data
+- **Legacy Transaction**
+- **EIP1559 Transaction**
+- **Personal Message**
+- **Typed Data**
 
 ```js
 requestId: String // UUID for current request
