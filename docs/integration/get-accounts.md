@@ -52,6 +52,29 @@ if (decodedQR != null) {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt).
 
+#### **Web(Typescript)**
+
+```jsx
+import KeystoneSDK, {UR} from "@keystonehq/keystone-sdk"
+import {AnimatedQRScanner} from "@keystonehq/animated-qr"
+
+const MultiAccounts = () => {
+    const keystoneSDK = new KeystoneSDK()
+
+    const onSucceed = ({type, cbor}) => {
+        const multiAccounts = keystoneSDK.parseMultiAccounts(new UR(Buffer.from(cbor, "hex"), type))
+        console.log("multiAccounts: ", multiAccounts);
+    }
+    const onError = (errorMessage) => {
+        console.log("error: ",errorMessage);
+    }
+
+    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={["crypto-multi-accounts"]} />
+}
+```
+
+`AnimatedQRScanner` helps scan the QR code on Keystone hardware wallet and returns the data which can be parsed by `KeystoneSDK`.
+
 <!-- tabs:end -->
 
 
@@ -81,9 +104,9 @@ struct Account {
 
 ```kotlin
 data class MultiAccounts (
-    val device: String,  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
-    val keys: Array<Account>,  // The device name
-    val masterFingerprint: String,  // An array of public keys
+    val device: String,  // The device name, e.g. 'Keystone'
+    val keys: Array<Account>,  // An array of public keys
+    val masterFingerprint: String,  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
 )
 
 data class Account(
@@ -92,6 +115,25 @@ data class Account(
     var publicKey: String, // Public key in hex string
     var name: String,  // The address name in hardware wallet
 )
+```
+
+#### **Web(Typescript)**
+
+```json
+{
+    "device": "Keystone", // The device name, e.g. 'Keystone'
+    "masterFingerprint": "f23f9fd2", // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
+    "keys": [ // An array of public keys
+        {
+            "chain": "SOL", // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
+            "path": "m/44'/501'/0'", // The full derivation path of current key
+            "publicKey": "b6a3b8936bbd2ed057f0de520a3f2bd9486591f7b77410d0f137bc68b6a72d47", // Public key in hex string
+            "name": "SOL-0",  // The address name in hardware wallet
+            "chainCode": "",  // The chain code if exist
+            "extendedPublicKey": "" // The xpub if exist
+        }
+    ]
+}
 ```
 
 <!-- tabs:end -->
@@ -105,6 +147,10 @@ Here is a QR code which contains the account information of Solana for the mnemo
 ![](/_media/connect-multi-accounts-sol.png ':size=250')
 
 The account information contains in the QR code
+
+<!-- tabs:start -->
+
+#### **iOS(Swift)**
 
 ```
 MultiAccounts (
@@ -130,3 +176,58 @@ MultiAccounts (
     ]
 )
 ```
+
+#### **Android(Kotlin)**
+
+```
+MultiAccounts (
+    masterFingerprint: "f23f9fd2",
+    device: "Keystone",
+    keys: [
+        Account(
+            chain: "SOL",
+            path: "m/44\'/501\'/O\'",
+            publicKey: "b6a368936bbd2ed057f0de520a32bd9486591f7677410d0f137bc68b6a72d47",
+            name: "SOL-O",
+            chainCode: ""',
+            extendedPublicKey: ""
+        ),
+        Account(
+            chain: "SOL",
+            path: "m/44\'/501\'/1\'",
+            publicKey: "1b3087a6762c569ab85e653634802c680c0063b8b2ec4141fd8d93b6ea5aa3",
+            name: "SOL-1",
+            chainCode: "",
+            extendedPublicKey: ""
+        )
+    ]
+)
+```
+
+#### **Web(Typescript)**
+
+```json
+{
+    "device": "Keystone",
+    "masterFingerprint": "f23f9fd2",
+    "keys": [
+        {
+            "chain": "SOL",
+            "path": "m/44'/501'/0'",
+            "publicKey": "b6a3b8936bbd2ed057f0de520a3f2bd9486591f7b77410d0f137bc68b6a72d47",
+            "name": "SOL-0",
+            "chainCode": "",
+            "extendedPublicKey": ""
+        },
+        {
+            "chain": "SOL",
+            "path": "m/44'/501'/1'",
+            "publicKey": "1b3087aa6762c569fab85e653634802c680c0063b8b2ec4141fd8d93b6ea5aa3",
+            "name": "SOL-1",
+            "chainCode": "",
+            "extendedPublicKey": ""
+        }
+    ]
+}
+```
+<!-- tabs:end -->
