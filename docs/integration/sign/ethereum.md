@@ -123,9 +123,9 @@ const Ethereum = () => {
 You can add `option` to `AnimatedQRCode` component to control the size, capacity and the update interval of QR code.
 ```jsx
 options={{
-    size: 300, // QR code width and length in UI
-    capacity: 200, // the capacity of a single QR code, default `400` bytes per image
-    interval: 300 // the QR code change time interval in mill seconds for animated QR code
+    size: number, // optional, QR code width and length in UI, default 180px
+    capacity: number, // optional, the capacity of a single QR code, default 400 bytes per image
+    interval: number // optional, the QR code change time interval in mill seconds for animated QR code, default 100ms
 }}
 ```
 > **Note**: The bigger the capacity, the more difficult it is for Keystone to scan.
