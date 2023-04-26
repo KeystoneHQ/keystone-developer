@@ -110,10 +110,6 @@ val keystoneSDK = KeystoneSDK()
 
 #### **Web(TypeScript)**
 
-> [!NOTE]
-> Working In Process
-
-
 We have created **NPM libraries** to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
 - [@keystonehq/keystone-sdk](https://www.npmjs.com/package/@keystonehq/keystone-sdk), covert transaction to QR code content, and parse QR code to signature.
