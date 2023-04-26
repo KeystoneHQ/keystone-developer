@@ -42,7 +42,18 @@ let qrCode = try keystoneSDK.aptos.generateSignRequest(aptosSignRequest: aptosSi
 let qrContent = qrCode.nextPart()
 ```
 
+All you need is to give the result of `nextPart` to a QR code presenter component,
+Keystone can then scan and parse the transaction data.
+
+You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
+> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
+
 An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Aptos.swift).
+
+> [!ATTENTION]
+> The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
+> the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
+> See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 #### **Android(Kotlin)**
 
@@ -65,9 +76,6 @@ val qrCode = keystoneSDK.aptos.generateSignRequest(signRequest)
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
 ```
-An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
-
-<!-- tabs:end -->
 
 All you need is to give the result of `nextPart` to a QR code presenter component,
 Keystone can then scan and parse the transaction data.
@@ -75,14 +83,55 @@ Keystone can then scan and parse the transaction data.
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
 > **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
 
-The QR code generated for the unsigned message above.
-
-![](/_media/sign-aptos-message.png ':size=200')
+An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
 
 > [!ATTENTION]
 > The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
 > the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
+
+#### **Web(TypeScript)**
+
+```jsx
+import KeystoneSDK, { KeystoneAptosSDK } from "@keystonehq/keystone-sdk"
+import {AnimatedQRCode} from "@keystonehq/animated-qr"
+
+let aptosSignRequest = {
+    requestId: "17467482-2654-4058-972D-F436EFAEB38E",
+    signData: "B5E97DB07FA0BD0E5598AA3643A9BC6F6693BDDC1A9FEC9E674A461EAA00B1931248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD0455000000000000000002000000000000000000000000000000000000000000000000000000000000000104636F696E087472616E73666572010700000000000000000000000000000000000000000000000000000000000000010A6170746F735F636F696E094170746F73436F696E0002201248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD04550880969800000000000A000000000000009600000000000000ACF63C640000000002",
+    signType: KeystoneAptosSDK.SignType.SingleSign,
+    accounts: [{
+        path: "m/44'/637'/0'/0'/0'",
+        xfp: "F23F9FD2"
+    }],
+    origin: "Petra"
+}
+
+const Aptos = () => {
+    const keystoneSDK = new KeystoneSDK();
+    const ur = keystoneSDK.aptos.generateSignRequest(aptosSignRequest);
+
+    return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
+}
+```
+
+`AnimatedQRCode` will return the unsigned data as a QR code, or animated QR code if needed.
+
+You can add `option` to `AnimatedQRCode` component to control the size, capacity and the update interval of QR code.
+```jsx
+options={{
+    size: number, // optional, QR code width and length in UI, default 180px
+    capacity: number, // optional, the capacity of a single QR code, default 400 bytes per image
+    interval: number // optional, the QR code change time interval in mill seconds for animated QR code, default 100ms
+}}
+```
+> **Note**: The bigger the capacity, the more difficult it is for Keystone to scan.
+
+<!-- tabs:end -->
+
+The QR code generated for the unsigned message above.
+
+![](/_media/sign-aptos-message.png ':size=200')
 
 ## Get Signature from Keystone
 
@@ -107,6 +156,10 @@ if decodedQR != nil {
 ```
 An example of continues scanning and parsing an Ethereum signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Aptos.swift)
 
+> [!ATTENTION]
+> The signature might not always be able to encode in a single QR code,
+> don't forget to handle the scenario in which Keystone shows it in animated QR codes.
+
 #### **Android(Kotlin)**
 
 ```kotlin
@@ -121,6 +174,33 @@ if (decodedQR != null) {
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
 
+> [!ATTENTION]
+> The signature might not always be able to encode in a single QR code,
+> don't forget to handle the scenario in which Keystone shows it in animated QR codes.
+
+#### **Web(TypeScript)**
+
+```jsx
+import KeystoneSDK, {UR} from "@keystonehq/keystone-sdk"
+import {AnimatedQRScanner} from "@keystonehq/animated-qr"
+
+const Aptos = () => {
+    const keystoneSDK = new KeystoneSDK();
+
+    const onSucceed = ({type, cbor}) => {
+        const signature = keystoneSDK.aptos.parseSignature(new UR(Buffer.from(cbor, "hex"), type))
+        console.log("signature: ", signature);
+    }
+    const onError = (errorMessage) => {
+        console.log("error: ",errorMessage);
+    }
+
+    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={["aptos-signature"]} />
+}
+```
+
+`AnimatedQRScanner` helps scan the QR code on Keystone hardware wallet and returns signed data which can be parsed by `KeystoneSDK`.
+
 <!-- tabs:end -->
 
 The signature data structure in the QR code
@@ -128,9 +208,6 @@ The signature data structure in the QR code
 Signature (
     requestId: String // the requestId from sign request
     signature: String // the serialized signature in hex string
+    authenticationPublicKey: String // indicate which signer signed the transaction
 )
 ```
-
-> [!ATTENTION]
-> The signature might not always be able to encode in a single QR code,
-> don't forget to handle the scenario in which Keystone shows it in animated QR codes.

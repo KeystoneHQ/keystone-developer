@@ -100,8 +100,6 @@ An example of covert Cosmos transaction data into QR code [here](https://github.
 > the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
-
-
 #### **Web(TypeScript)**
 
 ```jsx
@@ -138,8 +136,6 @@ options={{
 }}
 ```
 > **Note**: The bigger the capacity, the more difficult it is for Keystone to scan.
-
-
 
 <!-- tabs:end -->
 
