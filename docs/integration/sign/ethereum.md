@@ -52,7 +52,9 @@ Keystone can then scan and parse the transaction data.
 An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Ethereum.swift).
 
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400` bytes per image.
-> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
+
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The longer the fragment length, the more difficult it is for Keystone to scan.
 
 > [!ATTENTION]
 > The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
@@ -87,7 +89,9 @@ Keystone can then scan and parse the transaction data.
 An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
 
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400` bytes per image.
-> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
+
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The longer the fragment length, the more difficult it is for Keystone to scan.
 
 > [!ATTENTION]
 > The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
@@ -128,7 +132,8 @@ options={{
     interval: number // optional, the QR code change time interval in mill seconds for animated QR code, default 100ms
 }}
 ```
-> **Note**: The bigger the capacity, the more difficult it is for Keystone to scan.
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The bigger the capacity, the more difficult it is for Keystone to scan.
 
 <!-- tabs:end -->
 
@@ -347,7 +352,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 #### **Web(TypeScript)**
 
 ```jsx
-import KeystoneSDK, {UR} from "@keystonehq/keystone-sdk"
+import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
 const Ethereum = () => {
@@ -361,7 +366,7 @@ const Ethereum = () => {
         console.log("error: ",errorMessage);
     }
 
-    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={["eth-signature"]} />
+    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.EthSignature]} />
 }
 ```
 
