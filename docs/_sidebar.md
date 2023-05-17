@@ -1,6 +1,7 @@
 - [Introduction](/)
 - [Integration](/integration/index)
   - [Getting Started](/integration/getting-started)
+  - [Hardware Call](/integration/hardware-call)
   - [Get Accounts](/integration/get-accounts)
   - [Sign Transaction & Message](/integration/sign/index)
     - [Bitcoin](/integration/sign/bitcoin)
@@ -12,3 +13,4 @@
     - [Litecoin(WIP)](/integration/sign/litecoin)
     - [DigitalCash(WIP)](/integration/sign/dash)
     - [BitcoinCash(WIP)](/integration/sign/bch)
+    - [Cardano](/integration/sign/cardano)
