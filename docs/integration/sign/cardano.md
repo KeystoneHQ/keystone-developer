@@ -33,7 +33,7 @@ import KeystoneSDK from "@keystonehq/keystone-sdk"
 import {AnimatedQRCode} from "@keystonehq/animated-qr"
 
 let cardanoSignRequest = {
-    uuidString: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    requestId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
     signData: Buffer.from("84a400828258204e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99038258204e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99040182a200581d6179df4c75f7616d7d1fd39cbc1a6ea6b40a0d7b89fea62fc0909b6c370119c350a200581d61c9b0c9761fd1dc0404abd55efc895026628b5035ac623c614fbad0310119c35002198ecb0300a0f5f6", "hex"),
     utxos: [
         {
@@ -89,7 +89,7 @@ options={{
 
 The QR code generated for the unsigned message above.
 
-![](/_media/sign-aptos-message.png ':size=200')
+![](/_media/sign-cardano-tx.png ':size=200')
 
 ## Get Signature from Keystone
 
@@ -129,7 +129,6 @@ The signature data structure in the QR code
 ```
 Signature (
     requestId: String // the requestId from sign request
-    signature: String // the serialized signature in hex string
-    authenticationPublicKey: String // indicate which signer signed the transaction
+    witnessSet: String // the transaction witness set
 )
 ```

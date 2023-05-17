@@ -135,6 +135,6 @@ let keystoneSDK = new KeystoneSDK()
 
 <!-- tabs:end -->
 
-> [!Note]
+> [!TIP|labelVisibility:hidden|iconVisibility:hidden]
 > We build an [Android demo app](https://github.com/KeystoneHQ/keystone-sdk-android-demo/) and [iOS demo app](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/)
 > using `KeystoneSDK` to parse accounts QR code, generate sign request QR code and parse signature QR code.

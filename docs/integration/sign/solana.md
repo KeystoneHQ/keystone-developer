@@ -42,7 +42,9 @@ All you need is to give the result of `nextPart` to a QR code presenter componen
 Keystone can then scan and parse the transaction data.
 
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
-> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
+
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The longer the fragment length, the more difficult it is for Keystone to scan.
 
 An example of covert Solana transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Solana.swift)
 
@@ -76,7 +78,9 @@ All you need is to give the result of `nextPart` to a QR code presenter componen
 Keystone can then scan and parse the transaction data.
 
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
-> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
+
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The longer the fragment length, the more difficult it is for Keystone to scan.
 
 An example of covert transaction data into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/PlayerFragment.kt).
 
@@ -119,7 +123,8 @@ options={{
     interval: number // optional, the QR code change time interval in mill seconds for animated QR code, default 100ms
 }}
 ```
-> **Note**: The bigger the capacity, the more difficult it is for Keystone to scan.
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The bigger the capacity, the more difficult it is for Keystone to scan.
 
 
 <!-- tabs:end -->
@@ -252,7 +257,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 #### **Web(TypeScript)**
 
 ```jsx
-import KeystoneSDK, {UR} from "@keystonehq/keystone-sdk"
+import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
 const Solana = () => {
@@ -266,7 +271,7 @@ const Solana = () => {
         console.log("error: ",errorMessage);
     }
 
-    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={["sol-signature"]} />
+    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.SolSignature]} />
 }
 ```
 

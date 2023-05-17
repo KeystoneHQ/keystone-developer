@@ -9,7 +9,7 @@ We use the different standard to encode the account information.
 
 ![](/_media/connect.png)
 
-> [!Note]
+> [!TIP|labelVisibility:hidden|iconVisibility:hidden]
 > We build an [Android demo app](https://github.com/KeystoneHQ/keystone-sdk-android-demo/) and [iOS demo app](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/)
 > using `KeystoneSDK` to parse account QR code from Keystone hardware wallet.
 
@@ -55,7 +55,7 @@ The accounts QR code parsing process within a demo app is available [here](https
 #### **Web(Typescript)**
 
 ```jsx
-import KeystoneSDK, {UR} from "@keystonehq/keystone-sdk"
+import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
 const MultiAccounts = () => {
@@ -69,7 +69,7 @@ const MultiAccounts = () => {
         console.log("error: ",errorMessage);
     }
 
-    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={["crypto-multi-accounts"]} />
+    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.CryptoMultiAccounts]} />
 }
 ```
 

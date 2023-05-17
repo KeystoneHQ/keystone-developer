@@ -1,6 +1,6 @@
 # BitcoinCash
 
-> [!NOTE]
+> [!WARNING|labelVisibility:hidden|iconVisibility:hidden|style:flat]
 > Not available in Keystone hardware wallet at the moment.
 
 ## Display Unsigned Transaction
@@ -119,7 +119,9 @@ All you need is to give the result of `nextPart` to a QR code presenter componen
 Keystone can then scan and parse the transaction data.
 
 You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity of a single QR code, the default length is `400`.
-> **Note**: The longer the fragment length, the more difficult it is for Keystone to scan.
+
+> [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
+> The longer the fragment length, the more difficult it is for Keystone to scan.
 
 The QR code generated for the BCH sign request above.
 
