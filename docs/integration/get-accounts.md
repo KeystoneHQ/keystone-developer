@@ -246,7 +246,7 @@ MultiAccounts (
             path: "m/44\'/501\'/O\'",
             publicKey: "b6a368936bbd2ed057f0de520a32bd9486591f7677410d0f137bc68b6a72d47",
             name: "SOL-O",
-            chainCode: ""',
+            chainCode: "",
             extendedPublicKey: ""
         ),
         Account(
@@ -273,7 +273,7 @@ MultiAccounts (
             path: "m/44\'/501\'/O\'",
             publicKey: "b6a368936bbd2ed057f0de520a32bd9486591f7677410d0f137bc68b6a72d47",
             name: "SOL-O",
-            chainCode: ""',
+            chainCode: "",
             extendedPublicKey: ""
         ),
         Account(

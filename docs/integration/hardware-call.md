@@ -43,7 +43,7 @@ After generating the Key Derivation Call QR code with `KeystoneSDK`, scans the Q
 ### Example
 
 An example of trying to get the Ethereum BIP 44 standard extended public key `m/44'/60'/0'`
-and Solana BIP 44 standard extended public key `m/44'/501'/0'`.
+and Bitcoin BIP 84 standard extended public key `m/84'/0'/0'`.
 
 
 <!-- tabs:start -->
@@ -55,7 +55,7 @@ import KeystoneSDK from "@keystonehq/keystone-sdk";
 import {AnimatedQRCode} from "@keystonehq/animated-qr";
 
 export const KeyDerivationCall = () => {
-    const paths = ["m/44'/60'/0'", "m/44'/501'/0'"];
+    const paths = ["m/44'/60'/0'", "m/84'/0'/0'"];
     const ur = KeystoneSDK.generateKeyDerivationCall({ paths });
     return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
 }
