@@ -1,8 +1,8 @@
-# Aptos
+# Sui
 
 ## Display Unsigned Transaction
 
-For passing an unsigned Aptos transaction or message to the Keystone hardware wallet,
+For passing an unsigned Sui transaction or message to the Keystone hardware wallet,
 `KeystoneSDK` needs the data underneath, then covert it into a QR code generator.
 
 ```js
@@ -12,7 +12,7 @@ signType: Enum // supported data type. Currently supports single, multi and mess
 accounts: Array (
     path: String // the HD path to tell which private key should be used to sign the data
     xfp: String // master fingerprint provided by Keystone when getting accounts
-    key: String(Optional) // the public key for request this signing
+    address: String(Optional) // the address for request this signing
 )
 origin: String(Optional) // source of the request, wallet name etc
 ```
@@ -24,18 +24,22 @@ origin: String(Optional) // source of the request, wallet name etc
 ```swift
 import KeystoneSDK
 
-let aptosSignRequest = AptosSignRequest(
+let suiSignRequest = SuiSignRequest(
     requestId: "7AFD5E09-9267-43FB-A02E-08C4A09417EC",
-    signData: "4150544F530A6D6573736167653A207665726966795F77616C6C65740A6E6F6E63653A20373134363136353534363430333235393636333033313734",
+    signData: "00000200201ff915a5e9e32fdbe0135535b6c69a00a9809aaf7f7c0275d3239ca79db20d6400081027000000000000020200010101000101020000010000ebe623e33b7307f1350f8934beb3fb16baef0fc1b3f1b92868eec3944093886901a2e3e42930675d9571a467eb5d4b22553c93ccb84e9097972e02c490b4e7a22ab73200000000000020176c4727433105da34209f04ac3f22e192a2573d7948cb2fabde7d13a7f4f149ebe623e33b7307f1350f8934beb3fb16baef0fc1b3f1b92868eec39440938869e803000000000000640000000000000000",
     signType: .single,
     accounts: [
-        AptosSignRequest.Account(path: "m/44'/637'/0'/0'/0'", xfp: "f23f9fd2")
+        SuiSignRequest.Account(
+            path: "m/44'/784'/0'/0'/0'",
+            xfp: "f23f9fd2",
+            address: "0xebe623e33b7307f1350f8934beb3fb16baef0fc1b3f1b92868eec39440938869"
+        )
     ],
-    origin: "Petra"
+    origin: "Sui Wallet"
 )
 
 let keystoneSDK = KeystoneSDK()
-let qrCode = try keystoneSDK.aptos.generateSignRequest(aptosSignRequest: aptosSignRequest);
+let qrCode = try keystoneSDK.sui.generateSignRequest(suiSignRequest: suiSignRequest);
 
 // The QR code content which you can put in a QR code presenter.
 let qrContent = qrCode.nextPart()
@@ -49,7 +53,7 @@ You can change the value of `KeystoneSDK.maxFragmentLen` to modify the capacity 
 > [!NOTE|labelVisibility:hidden|iconVisibility:hidden]
 > The longer the fragment length, the more difficult it is for Keystone to scan.
 
-An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Aptos.swift).
+An example of covert an unsigned message into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Sui.swift).
 
 > [!ATTENTION]
 > The Keystone SDK will generate an infinite number of QR codes when the unsigned data is too big to put into a single QR code,
@@ -61,18 +65,25 @@ An example of covert an unsigned message into QR code [here](https://github.com/
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
 
-val accounts = ArrayList<AptosAccount>();
-accounts.add(AptosAccount(path = "m/44'/637'/0'/0'/0'", xfp = "F23F9FD2"))
-val signRequest = AptosSignRequest(
+val accounts = ArrayList<SuiAccount>();
+accounts.add(
+    SuiAccount(
+        "m/44'/784'/0'/0'/0'",
+        "F23F9FD2",
+        "0xebe623e33b7307f1350f8934beb3fb16baef0fc1b3f1b92868eec39440938869"
+    )
+)
+
+val signRequest = SuiSignRequest(
     requestId = "17467482-2654-4058-972D-F436EFAEB38E",
-    signData = "B5E97DB07FA0BD0E5598AA3643A9BC6F6693BDDC1A9FEC9E674A461EAA00B1931248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD0455000000000000000002000000000000000000000000000000000000000000000000000000000000000104636F696E087472616E73666572010700000000000000000000000000000000000000000000000000000000000000010A6170746F735F636F696E094170746F73436F696E0002201248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD04550880969800000000000A000000000000009600000000000000ACF63C640000000002",
-    signType = KeystoneAptosSDK.SignType.Single,
+    signData = "00000200201ff915a5e9e32fdbe0135535b6c69a00a9809aaf7f7c0275d3239ca79db20d6400081027000000000000020200010101000101020000010000ebe623e33b7307f1350f8934beb3fb16baef0fc1b3f1b92868eec3944093886901a2e3e42930675d9571a467eb5d4b22553c93ccb84e9097972e02c490b4e7a22ab73200000000000020176c4727433105da34209f04ac3f22e192a2573d7948cb2fabde7d13a7f4f149ebe623e33b7307f1350f8934beb3fb16baef0fc1b3f1b92868eec39440938869e803000000000000640000000000000000",
+    signType = KeystoneSuiSDK.SignType.Single,
     accounts = accounts,
-    origin = "Petra"
+    origin = "Sui Wallet"
 )
 
 val keystoneSDK = KeystoneSDK()
-val qrCode = keystoneSDK.aptos.generateSignRequest(signRequest)
+val qrCode = keystoneSDK.sui.generateSignRequest(signRequest)
 
 // The QR code content which you can put in a QR code presenter.
 val qrContent = qrCode.nextPart()
@@ -96,25 +107,26 @@ An example of covert transaction data into QR code [here](https://github.com/Key
 #### **Web(TypeScript)**
 
 ```jsx
-import KeystoneSDK, { KeystoneAptosSDK } from "@keystonehq/keystone-sdk"
+import KeystoneSDK, {KeystoneSuiSDK} from "@keystonehq/keystone-sdk"
 import {AnimatedQRCode} from "@keystonehq/animated-qr"
 
-let aptosSignRequest = {
-    requestId: "17467482-2654-4058-972D-F436EFAEB38E",
-    signData: "B5E97DB07FA0BD0E5598AA3643A9BC6F6693BDDC1A9FEC9E674A461EAA00B1931248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD0455000000000000000002000000000000000000000000000000000000000000000000000000000000000104636F696E087472616E73666572010700000000000000000000000000000000000000000000000000000000000000010A6170746F735F636F696E094170746F73436F696E0002201248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD04550880969800000000000A000000000000009600000000000000ACF63C640000000002",
-    signType: KeystoneAptosSDK.SignType.SingleSign,
-    accounts: [{
-        path: "m/44'/637'/0'/0'/0'",
-        xfp: "F23F9FD2"
-    }],
-    origin: "Petra"
+let suiSignRequest = {
+  requestId: "7AFD5E09-9267-43FB-A02E-08C4A09417EC",
+  signData: "000002002086ac6179ca6ad9a7b1ccb47202d06ae09a131e66309944922af9c73d3c203b66000810270000000000000202000101010001010200000100000e4d9313fb5b3f166bb6f2aea587edbe21fb1c094472ccd002f34b9d0633c71901d833a8eabc697a0b2e23740aca7be9b0b9e1560a39d2f390cf2534e94429f91ced0c00000000000020190ca0d64215ac63f50dbffa47563404182304e0c10ea30b5e4d671b7173a34c0e4d9313fb5b3f166bb6f2aea587edbe21fb1c094472ccd002f34b9d0633c719e803000000000000640000000000000000",
+  signType: KeystoneSuiSDK.SignType.Single,
+  accounts:[{
+      path: "m/44'/784'/0'/0'/0'",
+      xfp: '78230804',
+      address: '0e4d9313fb5b3f166bb6f2aea587edbe21fb1c094472ccd002f34b9d0633c719'
+  }],
+  origin: "Sui Wallet"
 }
 
-const Aptos = () => {
-    const keystoneSDK = new KeystoneSDK();
-    const ur = keystoneSDK.aptos.generateSignRequest(aptosSignRequest);
+export const Sui = () => {
+  const keystoneSDK = new KeystoneSDK();
+  const ur = keystoneSDK.sui.generateSignRequest(suiSignRequest);
 
-    return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
+  return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
 }
 ```
 
@@ -135,7 +147,7 @@ options={{
 
 The QR code generated for the unsigned message above.
 
-![](/_media/sign-aptos-message.png ':size=200')
+![](/_media/sign-sui-single.png ':size=200')
 
 ## Get Signature from Keystone
 
@@ -155,10 +167,10 @@ let keystoneSDK = KeystoneSDK()
 
 let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
 if decodedQR != nil {
-    let signature = try keystoneSDK.aptos.parseSignature(ur: decodedQR)
+    let signature = try keystoneSDK.sui.parseSignature(ur: decodedQR)
 }
 ```
-An example of continues scanning and parsing an Aptos signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Aptos.swift)
+An example of continues scanning and parsing a Sui signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Sui.swift)
 
 > [!ATTENTION]
 > The signature might not always be able to encode in a single QR code,
@@ -173,7 +185,7 @@ val keystoneSDK = KeystoneSDK()
 
 val decodedQR = keystoneSDK.decodeQR(qrCodeString)
 if (decodedQR != null) {
-    val signature = keystoneSDK.aptos.parseSignature(decodedQR)
+    val signature = keystoneSDK.sui.parseSignature(decodedQR)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
@@ -188,18 +200,18 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-const Aptos = () => {
-    const keystoneSDK = new KeystoneSDK();
+export const SuiScanner = () => {
+  const keystoneSDK = new KeystoneSDK();
 
-    const onSucceed = ({type, cbor}) => {
-        const signature = keystoneSDK.aptos.parseSignature(new UR(Buffer.from(cbor, "hex"), type))
-        console.log("signature: ", signature);
-    }
-    const onError = (errorMessage) => {
-        console.log("error: ",errorMessage);
-    }
+  const onSucceed = ({type, cbor}) => {
+    const signature = keystoneSDK.sui.parseSignature(new UR(Buffer.from(cbor, "hex"), type))
+    console.log("signature: ", signature);
+  }
+  const onError = (errorMessage) => {
+    console.log("error: ",errorMessage);
+  }
 
-    return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.AptosSignature]} />
+  return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.SuiSignature]} />
 }
 ```
 
@@ -212,6 +224,6 @@ The signature data structure in the QR code
 Signature (
     requestId: String // the requestId from sign request
     signature: String // the serialized signature in hex string
-    authenticationPublicKey: String // indicate which signer signed the transaction
+    publicKey: String // indicate which signer signed the transaction
 )
 ```

@@ -14,3 +14,4 @@
     - [DigitalCash(WIP)](/integration/sign/dash)
     - [BitcoinCash(WIP)](/integration/sign/bch)
     - [Cardano](/integration/sign/cardano)
+    - [Sui](/integration/sign/sui)
