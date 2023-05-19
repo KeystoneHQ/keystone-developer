@@ -13,5 +13,5 @@
     - [Litecoin(WIP)](/integration/sign/litecoin)
     - [DigitalCash(WIP)](/integration/sign/dash)
     - [BitcoinCash(WIP)](/integration/sign/bch)
-    - [Cardano](/integration/sign/cardano)
-    - [Sui](/integration/sign/sui)
+    - [Cardano(WIP)](/integration/sign/cardano)
+    - [Sui(WIP)](/integration/sign/sui)
