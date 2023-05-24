@@ -11,7 +11,7 @@ For passing an unsigned DASH transaction to the Keystone hardware wallet,
 Sign Request
 ```js
 requestId: String // UUID for current request
-signData: String // the DASH transaction
+signData: Object(DASH Transaction) // the DASH transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
 origin: String(Optional) // source of the request, wallet name etc
 ```

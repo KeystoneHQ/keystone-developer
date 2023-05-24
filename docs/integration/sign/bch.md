@@ -11,7 +11,7 @@ For passing an unsigned BCH transaction to the Keystone hardware wallet,
 Sign Request
 ```js
 requestId: String // UUID for current request
-signData: String // the BCH transaction
+signData: Object(BCH Transaction) // the BCH transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
 origin: String(Optional) // source of the request, wallet name etc
 ```
