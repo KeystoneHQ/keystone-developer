@@ -11,7 +11,7 @@ For passing an unsigned Litecoin transaction to the Keystone hardware wallet,
 Sign Request
 ```js
 requestId: String // UUID for current request
-signData: String // the Litecoin transaction
+signData: Object(Litecoin Transaction) // the Litecoin transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
 origin: String(Optional) // source of the request, wallet name etc
 ```
