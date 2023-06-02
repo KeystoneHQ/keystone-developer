@@ -6,5 +6,3 @@ This guide is for developers who would like to integrate their services with Key
 
 The goal of the Keystone hardware wallet is to provide users with a reliable and quality signer by protecting users' private keys so
 Keystone seeks to integrate with existing wallets and applications.
-
-![](/_media/integration-intro.png ':size=800')
