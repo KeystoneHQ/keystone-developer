@@ -15,11 +15,11 @@ Currently, Keystone supports signing
 requestId: String // UUID for current request
 signData: String // the serialized unsigned transaction data, in hex string
 dataType: Enum // supported data type. Amino, Direct, Textual and Message
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 accounts: Array (
   path: String // the HD path to tell which private key should be used to sign the data
   xfp: String // master fingerprint provided by Keystone when getting accounts
-  address: String(Optional) // the address for request this signing
+  address: Optional(String) // the address for request this signing
 )
 ```
 

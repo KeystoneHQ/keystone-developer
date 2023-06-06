@@ -11,8 +11,8 @@ signData: String // the unsigned transaction data, in hex string
 path: String // the HD path to tell which private key should be used to sign the data
 xfp: String // master fingerprint provided by Keystone when getting accounts
 dataType: Enum // supported data type. Currently supports transaction and message
-origin: String(Optional) // source of the request, wallet name etc
-address: String(Optional) // the address for request this signing
+origin: Optional(String) // source of the request, wallet name etc
+address: Optional(String) // the address for request this signing
 ```
 
 <!-- tabs:start -->

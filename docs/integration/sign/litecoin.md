@@ -13,7 +13,7 @@ Sign Request
 requestId: String // UUID for current request
 signData: Object(Litecoin Transaction) // the Litecoin transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 Litecoin Transaction
@@ -25,17 +25,17 @@ inputs: Array (
     utxo: (
         publicKey: String // the public key which the UTXO locking on, in hex string
         value: Number // the amount of the UTXO
-        script: String(Optional) // the locking script of UTXO
+        script: Optional(String) // the locking script of UTXO
     )
     ownerKeyPath: String // the HD path of the public key
 )
 outputs: Array (
     address: String // the receive address
     value: Number // send amount
-    isChange: Boolean(Optional) // is this receive address a change address
-    changeAddressPath: String(Optional) // the change address HD path if given isChange as true
+    isChange: Optional(Boolean) // is this receive address a change address
+    changeAddressPath: Optional(String) // the change address HD path if given isChange as true
 )
-dustThreshold: Number(Optional) // the dust threshold for transaction
+dustThreshold: Optional(Number) // the dust threshold for transaction
 ```
 
 <!-- tabs:start -->

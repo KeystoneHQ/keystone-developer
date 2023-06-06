@@ -13,7 +13,7 @@ Sign Request
 requestId: String // UUID for current request
 signData: Object(BCH Transaction) // the BCH transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 BCH Transaction
@@ -29,10 +29,10 @@ inputs: Array (
 outputs: Array (
     address: String // the receive address
     value: Number // send amount
-    isChange: Boolean(Optional) // is this receive address a change address
-    changeAddressPath: String(Optional) // the change address HD path if given isChange as true
+    isChange: Optional(Boolean) // is this receive address a change address
+    changeAddressPath: Optional(String) // the change address HD path if given isChange as true
 )
-dustThreshold: Number(Optional) // the dust threshold for transaction
+dustThreshold: Optional(Number) // the dust threshold for transaction
 ```
 
 <!-- tabs:start -->

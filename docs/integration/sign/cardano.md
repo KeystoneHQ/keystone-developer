@@ -24,7 +24,7 @@ certKeys: Array( // the stake keys need to use in this transaction
     xfp: String // master fingerprint
     keyPath: String // the related private key path of this input
 )
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 <!-- tabs:start -->

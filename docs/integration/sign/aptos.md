@@ -12,9 +12,9 @@ signType: Enum // supported data type. Currently supports single, multi and mess
 accounts: Array (
     path: String // the HD path to tell which private key should be used to sign the data
     xfp: String // master fingerprint provided by Keystone when getting accounts
-    key: String(Optional) // the public key for request this signing
+    key: Optional(String) // the public key for request this signing
 )
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 <!-- tabs:start -->

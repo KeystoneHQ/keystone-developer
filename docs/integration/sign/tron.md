@@ -13,7 +13,7 @@ requestId: String // UUID for current request
 signData: String // the serialized unsigned transaction data, in hex string
 path: String // the HD path to tell which private key should be used to sign the data
 xfp: String // master fingerprint provided by Keystone when getting accounts
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 tokenInfo: Optional ( // The token information is required for TRC10 and TRC20 token transfer
   name: String // the token name, will be shown on Keystone if token symbol is not provided
   symbol: String // the token symbol, will be shown on Keystone
