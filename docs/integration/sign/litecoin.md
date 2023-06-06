@@ -145,6 +145,8 @@ Keystone will sign the given transaction and give back the signed transaction da
 Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
 Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
+The progress range in the `decodeQR` result `0 - 100`.
+
 The sign result data structure in the QR code
 ```
 SignResult (
@@ -162,9 +164,9 @@ import KeystoneSDK
 
 let keystoneSDK = KeystoneSDK()
 
-let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
-    let signResult = try keystoneSDK.ltc.parseSignResult(ur: decodedQR)
+let decodedResult = try keystoneSDK.decodeQR(qrCode: qrCodeString)
+if decodedResult.progress == 100 {
+    let signResult = try keystoneSDK.ltc.parseSignResult(ur: decodedResult.ur!)
 }
 ```
 An example of continues scanning and parsing a signed PSBT, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Litecoin.swift)
@@ -176,9 +178,9 @@ import com.keystone.sdk.KeystoneSDK
 
 val keystoneSDK = KeystoneSDK()
 
-val decodedQR = keystoneSDK.decodeQR(qrCodeString)
-if (decodedQR != null) {
-    val signResult = keystoneSDK.ltc.parseSignResult(decodedQR)
+val decodedResult = keystoneSDK.decodeQR(qrCodeString)
+if (decodedResult.progress == 100) {
+    val signResult = keystoneSDK.ltc.parseSignResult(decodedResult.ur!!)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)

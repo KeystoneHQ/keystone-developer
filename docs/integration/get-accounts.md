@@ -112,10 +112,10 @@ to recover the account information provided by the Keystone hardware wallet.
 import KeystoneSDK
 
 let sdk = KeystoneSDK()
-// `decodeQR` decodes given QR code content and returns MultiAccounts object, or `nil` when more QR codes are needed
-let decodedQR = try sdk.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
-    let accounts = try sdk.parseMultiAccounts(ur: decodedQR)
+// `decodeQR` decodes given QR code content and returns scan progress and data, progress range 0 - 100.
+let result = try sdk.decodeQR(qrCode: qrCodeString)
+if result.progress == 100 {
+    let accounts = try sdk.parseMultiAccounts(ur: result.ur!)
 }
 ```
 
@@ -127,10 +127,10 @@ The accounts QR code parsing process within a demo app is available [here](https
 import com.keystone.sdk.KeystoneSDK
 
 val sdk = KeystoneSDK()
-// `decodeQR` decodes given QR code content and returns MultiAccounts object, or `null` when more QR codes are needed
-val decodedQR = sdk.decodeQR(qrCodeString)
-if (decodedQR != null) {
-    val accounts = sdk.parseMultiAccounts(decodedQR)
+// `decodeQR` decodes given QR code content and returns scan progress and data, progress range 0 - 100.
+val decodedResult = sdk.decodeQR(qrCodeString)
+if (decodedQR.progress == 100) {
+    val accounts = sdk.parseMultiAccounts(decodedResult.ur!!)
 }
 ```
 

@@ -155,6 +155,8 @@ Scan the animated QR code with your application on Keystone hardware wallet afte
 Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
 Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
+The progress range in the `decodeQR` result `0 - 100`.
+
 <!-- tabs:start -->
 
 #### **iOS(Swift)**
@@ -164,9 +166,9 @@ import KeystoneSDK
 
 let keystoneSDK = KeystoneSDK()
 
-let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
-    let signature = try keystoneSDK.cosmos.parseSignature(ur: decodedQR)
+let decodedResult = try keystoneSDK.decodeQR(qrCode: qrCodeString)
+if decodedResult.progress == 100 {
+    let signature = try keystoneSDK.cosmos.parseSignature(ur: decodedResult.ur!)
 }
 ```
 An example of continues scanning and parsing a Cosmos signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Cosmos.swift)
@@ -182,9 +184,9 @@ import com.keystone.sdk.KeystoneSDK
 
 val keystoneSDK = KeystoneSDK()
 
-val decodedQR = keystoneSDK.decodeQR(qrCodeString)
-if (decodedQR != null) {
-    val signature = keystoneSDK.cosmos.parseSignature(decodedQR)
+val decodedResult = keystoneSDK.decodeQR(qrCodeString)
+if (decodedResult.progress == 100) {
+    val signature = keystoneSDK.cosmos.parseSignature(decodedResult.ur!!)
 }
 ```
 An example of continues scanning and parsing QR code, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
