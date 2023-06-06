@@ -13,7 +13,7 @@ Sign Request
 requestId: String // UUID for current request
 signData: Object(Litecoin Transaction) // the Litecoin transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 Litecoin Transaction
@@ -25,17 +25,17 @@ inputs: Array (
     utxo: (
         publicKey: String // the public key which the UTXO locking on, in hex string
         value: Number // the amount of the UTXO
-        script: String(Optional) // the locking script of UTXO
+        script: Optional(String) // the locking script of UTXO
     )
     ownerKeyPath: String // the HD path of the public key
 )
 outputs: Array (
     address: String // the receive address
     value: Number // send amount
-    isChange: Boolean(Optional) // is this receive address a change address
-    changeAddressPath: String(Optional) // the change address HD path if given isChange as true
+    isChange: Optional(Boolean) // is this receive address a change address
+    changeAddressPath: Optional(String) // the change address HD path if given isChange as true
 )
-dustThreshold: Number(Optional) // the dust threshold for transaction
+dustThreshold: Optional(Number) // the dust threshold for transaction
 ```
 
 <!-- tabs:start -->
@@ -145,6 +145,8 @@ Keystone will sign the given transaction and give back the signed transaction da
 Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
 Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
+The progress range in the `decodeQR` result `0 - 100`.
+
 The sign result data structure in the QR code
 ```
 SignResult (
@@ -162,9 +164,9 @@ import KeystoneSDK
 
 let keystoneSDK = KeystoneSDK()
 
-let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
-    let signResult = try keystoneSDK.ltc.parseSignResult(ur: decodedQR)
+let decodedResult = try keystoneSDK.decodeQR(qrCode: qrCodeString)
+if decodedResult.progress == 100 {
+    let signResult = try keystoneSDK.ltc.parseSignResult(ur: decodedResult.ur!)
 }
 ```
 An example of continues scanning and parsing a signed PSBT, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Litecoin.swift)
@@ -176,9 +178,9 @@ import com.keystone.sdk.KeystoneSDK
 
 val keystoneSDK = KeystoneSDK()
 
-val decodedQR = keystoneSDK.decodeQR(qrCodeString)
-if (decodedQR != null) {
-    val signResult = keystoneSDK.ltc.parseSignResult(decodedQR)
+val decodedResult = keystoneSDK.decodeQR(qrCodeString)
+if (decodedResult.progress == 100) {
+    val signResult = keystoneSDK.ltc.parseSignResult(decodedResult.ur!!)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)

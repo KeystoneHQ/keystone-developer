@@ -52,23 +52,16 @@ export const Account = () => {
 
 The `Account` data structure
 
-<!-- tabs:start -->
-
-#### **Web(Typescript)**
-
-```json
-{
-    "chain": "ETH", // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
-    "path": "m/44'/60'/0'", // The derivation path of current key
-    "publicKey": "02cc6d7834204653ff10e0047a2395343cc6df081e76c88d5eee83f346f0b21cb7", // The public key in hex string
-    "name": "Keystone",  // The name of hardware wallet
-    "xfp": "f23f9fd2", // The master fingerprint
-    "chainCode": "712a9187e5c60c573a5acce855445376e1b74c240e417fe8cb2a8fdfd78d2d9d",  // The chain code
-    "extendedPublicKey": "xpub6CBZfsQuZgVnvTcScAAXSxtX5jdMHtX5LdRuygnTScMBbKyjsxznd8XMEqDntdY1jigmjunwRwHsQs3xusYQBVFbvLdN4YLzH8caLSSiAoV" // The account extended public key
-}
+```js
+chain: String // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
+path: String // The derivation path of current key
+publicKey: String // The public key in hex string
+name: String // The name of hardware wallet
+xfp: String // The master fingerprint
+chainCode: String // The chain code
+extendedPublicKey: Optional(String) //  The account extended public key
+note: Optional(String) // The note, e.g. "account.standard", "account.ledger_live"
 ```
-
-<!-- tabs:end -->
 
 #### Example
 
@@ -112,10 +105,10 @@ to recover the account information provided by the Keystone hardware wallet.
 import KeystoneSDK
 
 let sdk = KeystoneSDK()
-// `decodeQR` decodes given QR code content and returns MultiAccounts object, or `nil` when more QR codes are needed
-let decodedQR = try sdk.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
-    let accounts = try sdk.parseMultiAccounts(ur: decodedQR)
+// `decodeQR` decodes given QR code content and returns scan progress and data, progress range 0 - 100.
+let result = try sdk.decodeQR(qrCode: qrCodeString)
+if result.progress == 100 {
+    let accounts = try sdk.parseMultiAccounts(ur: result.ur!)
 }
 ```
 
@@ -127,10 +120,10 @@ The accounts QR code parsing process within a demo app is available [here](https
 import com.keystone.sdk.KeystoneSDK
 
 val sdk = KeystoneSDK()
-// `decodeQR` decodes given QR code content and returns MultiAccounts object, or `null` when more QR codes are needed
-val decodedQR = sdk.decodeQR(qrCodeString)
-if (decodedQR != null) {
-    val accounts = sdk.parseMultiAccounts(decodedQR)
+// `decodeQR` decodes given QR code content and returns scan progress and data, progress range 0 - 100.
+val decodedResult = sdk.decodeQR(qrCodeString)
+if (decodedQR.progress == 100) {
+    val accounts = sdk.parseMultiAccounts(decodedResult.ur!!)
 }
 ```
 

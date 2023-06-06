@@ -23,9 +23,9 @@ For passing an key derivation call to the Keystone hardware wallet,
 
 ```js
 paths: Array(String) // the paths of public keys that the software wallet want
-curve: Enum(Optional) // the crypto curve for generating the public key, `secp256k1` as default, currently supports `secp256k1` and `ed25519`, 
-algo: Enum(Optional) // the derivation algorithm, `slip10` as default, currently supports `slip10` and `bip32ed25519`
-origin: String(Optional) // source of the request, wallet name etc
+curve: Optional(Enum) // the crypto curve for generating the public key, `secp256k1` as default, currently supports `secp256k1` and `ed25519`
+algo: Optional(Enum) // the derivation algorithm, `slip10` as default, currently supports `slip10` and `bip32ed25519`
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 Acceptable Combination

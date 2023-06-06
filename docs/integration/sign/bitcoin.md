@@ -153,6 +153,8 @@ Keystone will sign the given transaction and give back the signed PSBT via QR co
 Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
 Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
+The progress range in the `decodeQR` result `0 - 100`.
+
 <!-- tabs:start -->
 
 #### **iOS(Swift)**
@@ -162,10 +164,10 @@ import KeystoneSDK
 
 let keystoneSDK = KeystoneSDK()
 
-let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
+let decodedResult = try keystoneSDK.decodeQR(qrCode: qrCodeString)
+if decodedResult.progress == 100 {
     // signed PSBT as type Data
-    let psbt = try keystoneSDK.btc.parsePSBT(ur: decodedQR)
+    let psbt = try keystoneSDK.btc.parsePSBT(ur: decodedResult.ur!)
 }
 ```
 
@@ -183,10 +185,10 @@ import com.keystone.sdk.KeystoneSDK
 
 val keystoneSDK = KeystoneSDK()
 
-val decodedQR = keystoneSDK.decodeQR(qrCodeString)
-if (decodedQR != null) {
+val decodedResult = keystoneSDK.decodeQR(qrCodeString)
+if (decodedResult.progress == 100) {
     // signed PSBT as type ByteArray
-    val psbt = keystoneSDK.btc.parsePSBT(decodedQR)
+    val psbt = keystoneSDK.btc.parsePSBT(decodedResult.ur!!)
 }
 ```
 

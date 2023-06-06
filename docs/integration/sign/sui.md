@@ -15,9 +15,9 @@ signType: Enum // supported data type. Currently supports single, multi and mess
 accounts: Array (
     path: String // the HD path to tell which private key should be used to sign the data
     xfp: String // master fingerprint provided by Keystone when getting accounts
-    address: String(Optional) // the address for request this signing
+    address: Optional(String) // the address for request this signing
 )
-origin: String(Optional) // source of the request, wallet name etc
+origin: Optional(String) // source of the request, wallet name etc
 ```
 
 <!-- tabs:start -->
@@ -159,6 +159,8 @@ Scan the animated QR code with your application on Keystone hardware wallet afte
 Keystone hardware wallet uses Fountain code to encode data when a single QR code is not able to contain all the information.
 Multiple QR code content is needed for Keystone SDK to recover the information provided by the Keystone hardware wallet.
 
+The progress range in the `decodeQR` result `0 - 100`.
+
 <!-- tabs:start -->
 
 #### **iOS(Swift)**
@@ -168,9 +170,9 @@ import KeystoneSDK
 
 let keystoneSDK = KeystoneSDK()
 
-let decodedQR = try keystoneSDK.decodeQR(qrCode: qrCodeString)
-if decodedQR != nil {
-    let signature = try keystoneSDK.sui.parseSignature(ur: decodedQR)
+let decodedResult = try keystoneSDK.decodeQR(qrCode: qrCodeString)
+if decodedResult.progress == 100 {
+    let signature = try keystoneSDK.sui.parseSignature(ur: decodedResult.ur!)
 }
 ```
 An example of continues scanning and parsing a Sui signature, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Sui.swift)
@@ -186,9 +188,9 @@ import com.keystone.sdk.KeystoneSDK
 
 val keystoneSDK = KeystoneSDK()
 
-val decodedQR = keystoneSDK.decodeQR(qrCodeString)
-if (decodedQR != null) {
-    val signature = keystoneSDK.sui.parseSignature(decodedQR)
+val decodedResult = keystoneSDK.decodeQR(qrCodeString)
+if (decodedResult.progress == 100) {
+    val signature = keystoneSDK.sui.parseSignature(decodedResult.ur!!)
 }
 ```
 An example of continues scanning and parsing accounts data, check [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt)
