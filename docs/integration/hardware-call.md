@@ -45,7 +45,7 @@ After generating the Key Derivation Call QR code with `KeystoneSDK`, scans the Q
 ### Example
 
 An example of trying to get the Bitcoin BIP 44 standard extended public key `m/44'/0'/0'` with curve `secp256k1`
-and one of the Solana public key `m/44'/501'/0'/0'/0` with curve `ed25519`.
+and one of the Solana public key `m/44'/501'/0'/0'/0'` with curve `ed25519`.
 
 
 <!-- tabs:start -->
@@ -59,7 +59,7 @@ import {AnimatedQRCode} from "@keystonehq/animated-qr";
 export const KeyDerivationCall = () => {
     const schemas = [
         { path: "m/44'/0'/0'"},
-        { path: "m/44'/501'/0'/0'/0", curve: Curve.ed25519 }
+        { path: "m/44'/501'/0'/0'/0'", curve: Curve.ed25519 }
     ]
     const ur = KeystoneSDK.generateKeyDerivationCall({ schemas });
     return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
@@ -68,6 +68,6 @@ export const KeyDerivationCall = () => {
 
 <!-- tabs:end -->
 
-The QR code generated for the Key Derivation Call with path `m/44'/0'/0'` with curve `secp256k1` and path `m/44'/501'/0'/0'/0` with curve `ed25519` above.
+The QR code generated for the Key Derivation Call with path `m/44'/0'/0'` with curve `secp256k1` and path `m/44'/501'/0'/0'/0'` with curve `ed25519` above.
 
 ![](/_media/key-derivation-call.png ':size=200')
