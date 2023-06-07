@@ -22,9 +22,11 @@ For passing an key derivation call to the Keystone hardware wallet,
 `KeystoneSDK` needs the data underneath, then covert it into a QR codes.
 
 ```js
-paths: Array(String) // the paths of public keys that the software wallet want
-curve: Optional(Enum) // the crypto curve for generating the public key, `secp256k1` as default, currently supports `secp256k1` and `ed25519`
-algo: Optional(Enum) // the derivation algorithm, `slip10` as default, currently supports `slip10` and `bip32ed25519`
+schemas: Array(
+    path: String // The path of public key that the software wallet want to get from hardware wallet
+    curve: Optional(Enum) // The crypto curve for generating the public key, `secp256k1` by default, currently supports `secp256k1` and `ed25519`
+    algo: Optional(Enum) // The derivation algorithm, `slip10` by default, currently supports `slip10` and `bip32ed25519`
+)
 origin: Optional(String) // source of the request, wallet name etc
 ```
 
@@ -42,8 +44,8 @@ After generating the Key Derivation Call QR code with `KeystoneSDK`, scans the Q
 
 ### Example
 
-An example of trying to get the Ethereum BIP 44 standard extended public key `m/44'/60'/0'`
-and Bitcoin BIP 84 standard extended public key `m/84'/0'/0'`.
+An example of trying to get the Bitcoin BIP 44 standard extended public key `m/44'/0'/0'` with curve `secp256k1`
+and one of the Solana public key `m/44'/501'/0'/0'/0'` with curve `ed25519`.
 
 
 <!-- tabs:start -->
@@ -51,18 +53,21 @@ and Bitcoin BIP 84 standard extended public key `m/84'/0'/0'`.
 #### **Web(TypeScript)**
 
 ```jsx
-import KeystoneSDK from "@keystonehq/keystone-sdk";
+import KeystoneSDK, {Curve} from "@keystonehq/keystone-sdk";
 import {AnimatedQRCode} from "@keystonehq/animated-qr";
 
 export const KeyDerivationCall = () => {
-    const paths = ["m/44'/60'/0'", "m/84'/0'/0'"];
-    const ur = KeystoneSDK.generateKeyDerivationCall({ paths });
+    const schemas = [
+        { path: "m/44'/0'/0'"},
+        { path: "m/44'/501'/0'/0'/0'", curve: Curve.ed25519 }
+    ]
+    const ur = KeystoneSDK.generateKeyDerivationCall({ schemas });
     return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
 }
 ```
 
 <!-- tabs:end -->
 
-The QR code generated for the Key Derivation Call with paths `m/44'/60'/0'` and `m/44'/501'/0'` above.
+The QR code generated for the Key Derivation Call with path `m/44'/0'/0'` with curve `secp256k1` and path `m/44'/501'/0'/0'/0'` with curve `ed25519` above.
 
 ![](/_media/key-derivation-call.png ':size=200')
