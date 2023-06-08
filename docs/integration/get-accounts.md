@@ -162,8 +162,9 @@ The `MultiAccounts` information data structure
 ```swift
 struct MultiAccounts {
     public var masterFingerprint: String  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
-    public var device: String  // The device name
     public var keys: Array<Account> // An array of public keys
+    public var device?: String  // The device name, e.g. 'Keystone'
+    public var deviceId?: String  // The device id, e.g. 28475c8d80f6c06bafbe46a7d1750f3fcf2565f7
 }
 
 struct Account {
@@ -171,7 +172,18 @@ struct Account {
     public var path: String  // The full derivation path of current key
     public var publicKey: String // Public key in hex string
     public var name: String  // The address name in hardware wallet
-    public var extendedPublicKey: String // The bip32 extended public key in hex string
+    public var note: String?  // The note for current account
+    public var extendedPublicKey: String // The bip32 extended public key, e.g. xpub6BwgsDRPiuArdfKHXD2FdF1cnXK4WSJCNUbZaAj9AbkdGrBoJM3B834xVAqfLR8eFh6VwLzVk8NKALiZgyytwMmayc6z7n9zSFjBjdkkKrk
+}
+```
+
+The note field in account only used for `ETH` at the moment. Keystone SDK has an enum `AccountNote` for it.
+
+```swift
+public enum AccountNote: String {
+    case standard = "account.standard"  // The BIP 44 standard xpub
+    case ledgerLegacy = "account.ledger_legacy" // The Ledger Legacy xpub, same as BIP 44 xpub
+    case ledgerLive = "account.ledger_live" // The Ledger Live public key
 }
 ```
 
@@ -179,9 +191,10 @@ struct Account {
 
 ```kotlin
 data class MultiAccounts (
-    val device: String,  // The device name, e.g. 'Keystone'
-    val keys: Array<Account>,  // An array of public keys
     val masterFingerprint: String,  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
+    val keys: Array<Account>,  // An array of public keys
+    val device: String?,  // The device name, e.g. 'Keystone'
+    val deviceId: String?,  // The device id, e.g. 28475c8d80f6c06bafbe46a7d1750f3fcf2565f7
 )
 
 data class Account(
@@ -189,25 +202,48 @@ data class Account(
     var path: String,  // The full derivation path of current key
     var publicKey: String, // Public key in hex string
     var name: String,  // The address name in hardware wallet
-)
+    var note: String?,  // The note for current account
+){ fun getExtendedPublicKey(): String } // The bip32 extended public key, e.g. xpub6BwgsDRPiuArdfKHXD2FdF1cnXK4WSJCNUbZaAj9AbkdGrBoJM3B834xVAqfLR8eFh6VwLzVk8NKALiZgyytwMmayc6z7n9zSFjBjdkkKrk
+```
+
+The note field in account only used for `ETH` at the moment. Keystone SDK has an enum `Note` for it.
+
+```kotlin
+enum class Note(val value: String) {
+    STANDARD("account.standard"), // The BIP 44 standard xpub
+    LEDGER_LEGACY("account.ledger_legacy"), // The Ledger Legacy xpub, same as BIP 44 xpub
+    LEDGER_LIVE("account.ledger_live"), // The Ledger Live public key
+}
 ```
 
 #### **Web(Typescript)**
 
-```json
-{
-    "device": "Keystone", // The device name, e.g. 'Keystone'
-    "masterFingerprint": "f23f9fd2", // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
-    "keys": [ // An array of public keys
-        {
-            "chain": "SOL", // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
-            "path": "m/44'/501'/0'", // The full derivation path of current key
-            "publicKey": "b6a3b8936bbd2ed057f0de520a3f2bd9486591f7b77410d0f137bc68b6a72d47", // Public key in hex string
-            "name": "SOL-0",  // The address name in hardware wallet
-            "chainCode": "",  // The chain code if exist
-            "extendedPublicKey": "" // The xpub if exist
-        }
-    ]
+```typescript
+interface MultiAccounts {
+    masterFingerprint: string  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
+    keys: Account[]  // An array of public keys
+    device?: string  // The device name, e.g. 'Keystone'
+    deviceId?: string  // The device id, e.g. '28475c8d80f6c06bafbe46a7d1750f3fcf2565f7'
+}
+
+interface Account {
+    chain: string  // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
+    path: string  // The full derivation path of current key
+    publicKey: string  // Public key in hex string
+    name?: string  // The address name in hardware wallet
+    chainCode: string  // The chain code if exist
+    extendedPublicKey?: string  // The bip32 extended public key, e.g. xpub6BwgsDRPiuArdfKHXD2FdF1cnXK4WSJCNUbZaAj9AbkdGrBoJM3B834xVAqfLR8eFh6VwLzVk8NKALiZgyytwMmayc6z7n9zSFjBjdkkKrk
+    note?: string  // The note for current account
+}
+```
+
+The note field in account only used for `ETH` at the moment. Keystone SDK has an enum `AccountNote` for it.
+
+```typescript
+enum AccountNote {
+    Standard = 'account.standard', // The BIP 44 standard xpub
+    LedgerLegacy = 'account.ledger_legacy', // The Ledger Legacy xpub, same as BIP 44 xpub
+    LedgerLive = 'account.ledger_live' // The Ledger Live public key
 }
 ```
 
@@ -230,7 +266,6 @@ The account information contains in the QR code
 ```
 MultiAccounts (
     masterFingerprint: "f23f9fd2",
-    device: "Keystone",
     keys: [
         Account(
             chain: "SOL",
@@ -248,7 +283,8 @@ MultiAccounts (
             chainCode: "",
             extendedPublicKey: ""
         )
-    ]
+    ],
+    device: "Keystone",
 )
 ```
 
@@ -257,7 +293,6 @@ MultiAccounts (
 ```
 MultiAccounts (
     masterFingerprint: "f23f9fd2",
-    device: "Keystone",
     keys: [
         Account(
             chain: "SOL",
@@ -275,7 +310,8 @@ MultiAccounts (
             chainCode: "",
             extendedPublicKey: ""
         )
-    ]
+    ],
+    device: "Keystone",
 )
 ```
 
@@ -283,7 +319,6 @@ MultiAccounts (
 
 ```json
 {
-    "device": "Keystone",
     "masterFingerprint": "f23f9fd2",
     "keys": [
         {
@@ -302,7 +337,8 @@ MultiAccounts (
             "chainCode": "",
             "extendedPublicKey": ""
         }
-    ]
+    ],
+    "device": "Keystone"
 }
 ```
 <!-- tabs:end -->
