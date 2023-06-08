@@ -163,8 +163,8 @@ The `MultiAccounts` information data structure
 struct MultiAccounts {
     public var masterFingerprint: String  // A 4 bytes hex string indicates the current mnemonic, e.g. 'f23f9fd2'
     public var keys: Array<Account> // An array of public keys
-    public var device?: String  // The device name, e.g. 'Keystone'
-    public var deviceId?: String  // The device id, e.g. 28475c8d80f6c06bafbe46a7d1750f3fcf2565f7
+    public var device: String?  // The device name, e.g. 'Keystone'
+    public var deviceId: String?  // The device id, e.g. 28475c8d80f6c06bafbe46a7d1750f3fcf2565f7
 }
 
 struct Account {
