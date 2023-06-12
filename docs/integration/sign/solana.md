@@ -105,7 +105,7 @@ const solSignRequest = {
     origin: "MetaMask"
 }
 
-export const Solana = () => {
+const Solana = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.sol.generateSignRequest(solSignRequest);
 
@@ -168,7 +168,7 @@ const solSignRequest = {
     origin: "Solflare"
 }
 
-export const Solana = () => {
+const Solana = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.sol.generateSignRequest(solSignRequest);
 
@@ -199,7 +199,7 @@ const solSignRequest = {
     origin: "Solflare"
 }
 
-export const Solana = () => {
+const Solana = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.sol.generateSignRequest(solSignRequest);
 

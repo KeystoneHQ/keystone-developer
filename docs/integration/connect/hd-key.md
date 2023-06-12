@@ -32,7 +32,7 @@ note: Optional(String) // The note, e.g. "account.standard", "account.ledger_liv
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-export const Account = () => {
+const Account = () => {
 
   const onSucceed = ({type, cbor}) => {
     const account = KeystoneSDK.parseHDKey(new UR(Buffer.from(cbor, "hex"), type))

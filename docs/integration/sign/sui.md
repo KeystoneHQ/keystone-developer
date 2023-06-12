@@ -125,7 +125,7 @@ let suiSignRequest = {
   origin: "Sui Wallet"
 }
 
-export const Sui = () => {
+const Sui = () => {
   const keystoneSDK = new KeystoneSDK();
   const ur = keystoneSDK.sui.generateSignRequest(suiSignRequest);
 
@@ -205,7 +205,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-export const SuiScanner = () => {
+const SuiScanner = () => {
   const keystoneSDK = new KeystoneSDK();
 
   const onSucceed = ({type, cbor}) => {

@@ -264,7 +264,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-export const LitecoinScanner = () => {
+const LitecoinScanner = () => {
     const keystoneSDK = new KeystoneSDK();
 
     const onSucceed = ({type, cbor}) => {

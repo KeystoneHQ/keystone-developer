@@ -25,7 +25,7 @@ let xrpTransaction = {
     SigningPubKey: "0263e0f578081132fd9e12829c67b9e68185d7f7a8bb37b78f98e976c3d9d163e6"
 }
 
-export const Xrp = () => {
+const Xrp = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.xrp.generateSignRequest(xrpTransaction);
 
@@ -68,7 +68,7 @@ Multiple QR code content is needed for Keystone SDK to recover the information p
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-export const XrpScanner = () => {
+const XrpScanner = () => {
     const keystoneSDK = new KeystoneSDK();
 
     const onSucceed = ({cbor, type}) => {

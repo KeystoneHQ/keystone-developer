@@ -66,7 +66,7 @@ let cardanoSignRequest = {
     origin: "cardano-wallet"
 }
 
-export const Cardano = () => {
+const Cardano = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.cardano.generateSignRequest(cardanoSignRequest);
 
