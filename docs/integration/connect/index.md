@@ -13,6 +13,7 @@ Currently Supports
 
 Special Cases
 - **Arweave Account**, only if you need an Arweave account from Keystone
+- **XRP Account**, only if you need an XRP account from Keystone
 
 ![](/_media/connect.png)
 

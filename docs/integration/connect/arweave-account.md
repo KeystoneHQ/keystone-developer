@@ -78,7 +78,7 @@ The accounts QR code parsing process within a demo app is available [here](https
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-const MultiAccounts = () => {
+const ArweaveAccount = () => {
     const onSucceed = ({type, cbor}) => {
         const account = KeystoneSDK.arweave.parseAccount(new UR(Buffer.from(cbor, "hex"), type))
         console.log("account: ", account);
