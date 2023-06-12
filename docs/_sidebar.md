@@ -17,6 +17,7 @@
     - [Arweave](/integration/sign/arweave)
     - [Near](/integration/sign/near)
     - [XRP](/integration/sign/xrp)
+    - [Polkadot](/integration/sign/polkadot)
     - [Litecoin(WIP)](/integration/sign/litecoin)
     - [DigitalCash(WIP)](/integration/sign/dash)
     - [BitcoinCash(WIP)](/integration/sign/bch)
