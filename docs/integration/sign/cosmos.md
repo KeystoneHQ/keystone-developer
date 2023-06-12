@@ -210,7 +210,7 @@ const Cosmos = () => {
         console.log("signature: ", signature);
     }
     const onError = (errorMessage) => {
-        console.log("error: ",errorMessage);
+        console.log("error: ", errorMessage);
     }
 
     return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.CosmosSignature]} />
