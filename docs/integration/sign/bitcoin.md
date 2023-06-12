@@ -211,7 +211,7 @@ const Bitcoin = () => {
         console.log("psbt: ", psbt);
     }
     const onError = (errorMessage) => {
-        console.log("error: ",errorMessage);
+        console.log("error: ", errorMessage);
     }
 
     return <AnimatedQRScanner handleScan={onSucceed} handleError={onError} urTypes={[URType.CryptoPSBT]} />

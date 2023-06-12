@@ -1,9 +1,11 @@
 # Hardware Call
 
+> [!TIP|labelVisibility:hidden|iconVisibility:hidden]
+> Most wallet do not need this step when getting account information from Keystone.
+
 Hardware Call is the process that a watch-only wallet send requests to Keystone hardware wallet,
 Keystone then execute the given command and present the result in QR code.
-You can think it as the API of Keystone hardware wallet. 
-Not every wallet needs this step when getting account information from Keystone.
+You can think it as the API of Keystone hardware wallet.
 
 The Hardware Call supports at the moment
 - Key Derivation Call
