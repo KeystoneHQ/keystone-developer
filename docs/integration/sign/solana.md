@@ -17,7 +17,7 @@ address: Optional(String) // the address for request this signing
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -53,7 +53,7 @@ An example of covert Solana transaction data into QR code [here](https://github.
 > the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -89,7 +89,7 @@ An example of covert transaction data into QR code [here](https://github.com/Key
 > the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {KeystoneSolanaSDK} from "@keystonehq/keystone-sdk";
@@ -105,7 +105,7 @@ const solSignRequest = {
     origin: "MetaMask"
 }
 
-export const Solana = () => {
+const Solana = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.sol.generateSignRequest(solSignRequest);
 
@@ -140,7 +140,7 @@ The QR Code the unsigned message generated above.
 
 <!-- tabs:start -->
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {KeystoneSolanaSDK} from "@keystonehq/keystone-sdk";
@@ -168,7 +168,7 @@ const solSignRequest = {
     origin: "Solflare"
 }
 
-export const Solana = () => {
+const Solana = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.sol.generateSignRequest(solSignRequest);
 
@@ -181,7 +181,7 @@ export const Solana = () => {
 ### Message
 
 <!-- tabs:start -->
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {KeystoneSolanaSDK} from "@keystonehq/keystone-sdk";
@@ -199,7 +199,7 @@ const solSignRequest = {
     origin: "Solflare"
 }
 
-export const Solana = () => {
+const Solana = () => {
     const keystoneSDK = new KeystoneSDK();
     const ur = keystoneSDK.sol.generateSignRequest(solSignRequest);
 
@@ -220,7 +220,7 @@ The progress range in the `decodeQR` result `0 - 100`.
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -238,7 +238,7 @@ An example of continues scanning and parsing Solana signature, check [here](http
 > The signature might not always be able to encode in a single QR code,
 > don't forget to handle the scenario in which Keystone shows it in animated QR codes.
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -256,7 +256,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 > The signature might not always be able to encode in a single QR code,
 > don't forget to handle the scenario in which Keystone shows it in animated QR codes.
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"

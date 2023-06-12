@@ -1,0 +1,28 @@
+.swift, .kotlin, .typescript {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.swift::before, .kotlin::before, .typescript::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  filter: grayscale(100%);
+  position: absolute;
+  left: -20px;
+}
+
+.swift::before {
+  background-image: url("./_media/Swift.png");
+}
+
+.kotlin::before {
+  background-image: url("./_media/Kotlin.jpeg");
+}
+
+.typescript::before {
+  background-image: url("./_media/Typescript.png");
+}

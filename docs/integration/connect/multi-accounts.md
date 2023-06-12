@@ -6,7 +6,7 @@ Multiple accounts is used when multiple public keys or extended public keys need
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 struct MultiAccounts {
@@ -36,7 +36,7 @@ public enum AccountNote: String {
 }
 ```
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 data class MultiAccounts (
@@ -65,7 +65,7 @@ enum class Note(val value: String) {
 }
 ```
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```typescript
 interface MultiAccounts {
@@ -102,7 +102,7 @@ enum AccountNote {
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -117,7 +117,7 @@ if result.progress == 100 {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/MultiAccountsView.swift).
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -132,7 +132,7 @@ if (decodedQR.progress == 100) {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt).
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
@@ -170,7 +170,7 @@ The account information contains in the QR code
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 MultiAccounts (
@@ -197,7 +197,7 @@ MultiAccounts (
 )
 ```
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 MultiAccounts (
@@ -224,7 +224,7 @@ MultiAccounts (
 )
 ```
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```json
 {

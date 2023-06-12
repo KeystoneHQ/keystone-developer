@@ -34,7 +34,7 @@ Keystone hardware wallet speaks.
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 We have created a **Swift package** to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
@@ -64,7 +64,7 @@ import KeystoneSDK
 let keystoneSDK = KeystoneSDK()
 ```
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 We have created an **Android library** with JitPack to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 
@@ -108,7 +108,7 @@ import com.keystone.sdk.KeystoneSDK
 val keystoneSDK = KeystoneSDK()
 ```
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 We have created **NPM libraries** to help developers to extract the account information and sign transaction with Keystone hardware wallet.
 

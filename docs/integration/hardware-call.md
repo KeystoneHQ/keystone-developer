@@ -52,13 +52,13 @@ and one of the Solana public key `m/44'/501'/0'/0'/0'` with curve `ed25519`.
 
 <!-- tabs:start -->
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {Curve} from "@keystonehq/keystone-sdk";
 import {AnimatedQRCode} from "@keystonehq/animated-qr";
 
-export const KeyDerivationCall = () => {
+const KeyDerivationCall = () => {
     const schemas = [
         { path: "m/44'/0'/0'"},
         { path: "m/44'/501'/0'/0'/0'", curve: Curve.ed25519 }

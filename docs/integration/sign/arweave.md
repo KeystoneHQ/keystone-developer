@@ -17,7 +17,7 @@ origin: Optional(String) // source of the request, wallet name etc
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -54,7 +54,7 @@ An example of covert an Arweave transaction data into QR code [here](https://git
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -90,7 +90,7 @@ An example of covert an Arweave transaction data into QR code [here](https://git
 > the software wallet needs to show the animated QR codes so that the Keystone hardware wallet can get all the transaction data via continuous scanning.
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {KeystoneArweaveSDK}  from "@keystonehq/keystone-sdk"
@@ -143,7 +143,7 @@ The progress range in the `decodeQR` result `0 - 100`.
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -162,7 +162,7 @@ An example of continues scanning and parsing an Arweave signature, check [here](
 > don't forget to handle the scenario in which Keystone shows it in animated QR codes.
 
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -181,7 +181,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 > The signature might not always be able to encode in a single QR code,
 > don't forget to handle the scenario in which Keystone shows it in animated QR codes.
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"

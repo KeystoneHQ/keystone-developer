@@ -7,7 +7,7 @@ Keystone uses [HDKey](https://github.com/BlockchainCommons/Research/blob/master/
 
 <!-- tabs:start -->
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```js
 chain: String // The symbol of the coin this key belongs to, e.g. 'BTC', 'ETH'
@@ -26,13 +26,13 @@ note: Optional(String) // The note, e.g. "account.standard", "account.ledger_liv
 
 <!-- tabs:start -->
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
-export const Account = () => {
+const Account = () => {
 
   const onSucceed = ({type, cbor}) => {
     const account = KeystoneSDK.parseHDKey(new UR(Buffer.from(cbor, "hex"), type))
@@ -60,7 +60,7 @@ The account information in the QR code
 
 <!-- tabs:start -->
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```json
 {
