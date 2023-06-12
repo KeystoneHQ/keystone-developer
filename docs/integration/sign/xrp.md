@@ -7,7 +7,7 @@ For passing an unsigned XRP transaction or message to the Keystone hardware wall
 
 <!-- tabs:start -->
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK from "@keystonehq/keystone-sdk"
@@ -62,7 +62,7 @@ Multiple QR code content is needed for Keystone SDK to recover the information p
 
 <!-- tabs:start -->
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"

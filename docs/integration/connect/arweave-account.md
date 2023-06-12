@@ -6,7 +6,7 @@ Arweave account exports necessary account information for Arweave wallets.
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 struct ArweaveAccount {
@@ -16,7 +16,7 @@ struct ArweaveAccount {
 }
 ```
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 data class ArweaveAccount(
@@ -26,7 +26,7 @@ data class ArweaveAccount(
 )
 ```
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```typescript
 interface ArweaveAccount {
@@ -42,7 +42,7 @@ interface ArweaveAccount {
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -57,7 +57,7 @@ if result.progress == 100 {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/MultiAccountsView.swift).
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -72,7 +72,7 @@ if (decodedQR.progress == 100) {
 
 The accounts QR code parsing process within a demo app is available [here](https://github.com/KeystoneHQ/keystone-sdk-android-demo/blob/master/app/src/main/kotlin/com/keystone/sdk/demo/ScannerFragment.kt).
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
@@ -111,7 +111,7 @@ The account information contains in the QR code
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 ArweaveAccount (
@@ -121,7 +121,7 @@ ArweaveAccount (
 )
 ```
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 ArweaveAccount (
@@ -131,7 +131,7 @@ ArweaveAccount (
 )
 ```
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```json
 {

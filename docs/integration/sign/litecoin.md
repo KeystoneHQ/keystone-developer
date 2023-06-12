@@ -11,12 +11,12 @@ For passing an unsigned Litecoin transaction to the Keystone hardware wallet,
 Sign Request
 ```js
 requestId: String // UUID for current request
-signData: Object(Litecoin Transaction) // the Litecoin transaction
+signData: Object(LitecoinTransaction) // the Litecoin transaction
 xfp: String // master fingerprint provided by Keystone when getting accounts
 origin: Optional(String) // source of the request, wallet name etc
 ```
 
-Litecoin Transaction
+LitecoinTransaction
 ```js
 fee: Number // transaction fee
 inputs: Array (
@@ -40,7 +40,7 @@ dustThreshold: Optional(Number) // the dust threshold for transaction
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -80,7 +80,7 @@ let isSingleQRCode = qrCode.isSinglePart()
 ```
 An example of covert LTC sign request into QR code [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Litecoin.swift).
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -157,7 +157,7 @@ SignResult (
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -171,7 +171,7 @@ if decodedResult.progress == 100 {
 ```
 An example of continues scanning and parsing a signed PSBT, check [here](https://github.com/KeystoneHQ/keystone-sdk-ios-demo/blob/master/keystone-sdk-ios-demo/SignTransaction/Litecoin.swift)
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK

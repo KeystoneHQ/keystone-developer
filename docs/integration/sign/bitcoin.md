@@ -7,7 +7,7 @@ For passing an unsigned Bitcoin transaction to the Keystone hardware wallet,
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -46,7 +46,7 @@ qrCode.nextPart() // ur:crypto-psbt/4-2/lpaaaocfadcycyiychntfxhdlgkkknoyvsgtyack
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -85,7 +85,7 @@ qrCode.nextPart() // ur:crypto-psbt/4-2/lpaaaocfadcycyiychntfxhdlgkkknoyvsgtyack
 > See [Fountain code](https://en.wikipedia.org/wiki/Fountain_code) for more information about multiple QR codes.
 
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK from "@keystonehq/keystone-sdk";
@@ -157,7 +157,7 @@ The progress range in the `decodeQR` result `0 - 100`.
 
 <!-- tabs:start -->
 
-#### **iOS(Swift)**
+#### **<span class="swift">iOS(Swift)</span>**
 
 ```swift
 import KeystoneSDK
@@ -178,7 +178,7 @@ An example of continues scanning and parsing a signed PSBT, check [here](https:/
 > don't forget to handle the scenario in which Keystone shows it in animated QR codes.
 
 
-#### **Android(Kotlin)**
+#### **<span class="kotlin">Android(Kotlin)</span>**
 
 ```kotlin
 import com.keystone.sdk.KeystoneSDK
@@ -199,7 +199,7 @@ An example of continues scanning and parsing accounts data, check [here](https:/
 > don't forget to handle the scenario in which Keystone shows it in animated QR codes.
 
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"

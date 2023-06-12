@@ -6,7 +6,7 @@ XRP account exports necessary account information for XRP wallets.
 
 <!-- tabs:start -->
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```typescript
 interface XrpAccount {
@@ -21,7 +21,7 @@ interface XrpAccount {
 
 <!-- tabs:start -->
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
@@ -60,7 +60,7 @@ The account information contains in the QR code
 
 <!-- tabs:start -->
 
-#### **Web(Typescript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```json
 {

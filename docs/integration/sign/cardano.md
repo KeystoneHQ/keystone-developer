@@ -29,7 +29,7 @@ origin: Optional(String) // source of the request, wallet name etc
 
 <!-- tabs:start -->
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK from "@keystonehq/keystone-sdk"
@@ -103,7 +103,7 @@ Multiple QR code content is needed for Keystone SDK to recover the information p
 
 <!-- tabs:start -->
 
-#### **Web(TypeScript)**
+#### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
 import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
