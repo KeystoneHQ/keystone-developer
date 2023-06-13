@@ -157,7 +157,7 @@ import { Hardfork, Chain, Common } from '@ethereumjs/common';
 import KeystoneSDK, {KeystoneEthereumSDK} from "@keystonehq/keystone-sdk";
 import {AnimatedQRCode} from "@keystonehq/animated-qr";
 
-const common =  new Common({ chain: Chain.Ropsten, hardfork: Hardfork.London });
+const common =  new Common({ chain: Chain.Mainnet, hardfork: Hardfork.London });
 const txParams = {
     to: "0x31bA53Ca350975007B27CF43AcB4D9Bc3db2641c",
     gasLimit: 200000,
@@ -174,8 +174,8 @@ const ethSignRequest = {
     requestId: uuid.v4(),
     signData: serializedMessage,
     dataType: KeystoneEthereumSDK.DataType.transaction,
-    path: "m/44'/60'/0'/0/0", // master fingerprint
-    xfp: "F23F9FD2",
+    path: "m/44'/60'/0'/0/0",
+    xfp: "F23F9FD2", // master fingerprint
     chainId: 1,
     origin: "MetaMask"
 }
@@ -200,7 +200,7 @@ import { Hardfork, Chain, Common } from '@ethereumjs/common';
 import KeystoneSDK, {KeystoneEthereumSDK} from "@keystonehq/keystone-sdk";
 import {AnimatedQRCode} from "@keystonehq/animated-qr";
 
-const common =  new Common({ chain: Chain.Ropsten, hardfork: Hardfork.London });
+const common =  new Common({ chain: Chain.Mainnet, hardfork: Hardfork.London });
 
 const txParams = {
   to: "0x31bA53Ca350975007B27CF43AcB4D9Bc3db2641c",
