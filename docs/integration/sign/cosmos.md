@@ -122,7 +122,9 @@ let cosmosSignRequest = {
 }
 
 const Cosmos = () => {
-    const keystoneSDK = new KeystoneSDK();
+    const keystoneSDK = new KeystoneSDK({
+        origin: "Keplr Extension"
+    });
     const ur = keystoneSDK.cosmos.generateSignRequest(cosmosSignRequest);
 
     return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
@@ -203,7 +205,9 @@ import KeystoneSDK, {UR, URType} from "@keystonehq/keystone-sdk"
 import {AnimatedQRScanner} from "@keystonehq/animated-qr"
 
 const Cosmos = () => {
-    const keystoneSDK = new KeystoneSDK();
+    const keystoneSDK = new KeystoneSDK({
+        origin: "Keplr Extension"
+    });
 
     const onSucceed = ({type, cbor}) => {
         const signature = keystoneSDK.cosmos.parseSignature(new UR(Buffer.from(cbor, "hex"), type))
