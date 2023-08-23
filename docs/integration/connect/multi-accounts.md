@@ -25,6 +25,7 @@ struct Account {
     public var extendedPublicKey: String // The bip32 extended public key, e.g. xpub6BwgsDRPiuArdfKHXD2FdF1cnXK4WSJCNUbZaAj9AbkdGrBoJM3B834xVAqfLR8eFh6VwLzVk8NKALiZgyytwMmayc6z7n9zSFjBjdkkKrk
 }
 ```
+The SDK provides utils to help parse the `path` string, check [here](/integration/connect/utils?id=cryptopath)
 
 The note field in account only used for `ETH` at the moment. Keystone SDK has an enum `AccountNote` for it.
 
@@ -54,6 +55,7 @@ data class Account(
     var note: String?,  // The note for current account
 ){ fun getExtendedPublicKey(): String } // The bip32 extended public key, e.g. xpub6BwgsDRPiuArdfKHXD2FdF1cnXK4WSJCNUbZaAj9AbkdGrBoJM3B834xVAqfLR8eFh6VwLzVk8NKALiZgyytwMmayc6z7n9zSFjBjdkkKrk
 ```
+The SDK provides utils to help parse the `path` string, check [here](/integration/connect/utils?id=cryptopath)
 
 The note field in account only used for `ETH` at the moment. Keystone SDK has an enum `Note` for it.
 
