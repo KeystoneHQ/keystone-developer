@@ -5,6 +5,7 @@
   - [Get Accounts](/integration/connect/index)
     - [HD Key](/integration/connect/hd-key)
     - [Multi Accounts](/integration/connect/multi-accounts)
+    - [Utils](/integration/connect/utils)
     - [Arweave Account](/integration/connect/arweave-account)
     - [XRP Account](/integration/connect/xrp-account)
   - [Sign Transaction & Message](/integration/sign/index)
