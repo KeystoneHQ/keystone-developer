@@ -13,7 +13,7 @@ Currently, Keystone supports signing
 
 ```js
 requestId: String // UUID for current request
-signData: String // the serialized unsigned transaction data, in hex string
+signData: String // the serialized unsigned transaction data or unsigned message, in hex string
 dataType: Enum // supported data type. transaction, typed transaction, personal message and typed data.
 chainId: Int // the EVM chain ID
 path: String // the HD path to tell which private key should be used to sign the data
