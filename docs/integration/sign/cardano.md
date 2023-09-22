@@ -14,12 +14,12 @@ signData: String // the serialized unsigned transaction data, in hex string
 utxos: Array ( // the transactions inputs
     transactionHash: String
     index: Number
-    amount: Number
+    amount: String
     xfp: String // master fingerprint provided by Keystone when getting accounts 
     hdPath: String // the HD path to tell which private key should be used to sign the data
     address: String
 )
-certKeys: Array( // the stake keys need to use in this transaction
+extraSigners: Array( // the stake keys need to use in this transaction
     keyHash: String // the stake key hash
     xfp: String // master fingerprint
     keyPath: String // the related private key path of this input
@@ -42,7 +42,7 @@ let cardanoSignRequest = {
         {
             transactionHash: "4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99",
             index: 3,
-            amount: 10000000,
+            amount: "10000000",
             xfp: "73c5da0a",
             hdPath: "m/1852'/1815'/0'/0/0",
             address: "addr1qy8ac7qqy0vtulyl7wntmsxc6wex80gvcyjy33qffrhm7sh927ysx5sftuw0dlft05dz3c7revpf7jx0xnlcjz3g69mq4afdhv",
@@ -50,13 +50,13 @@ let cardanoSignRequest = {
         {
             transactionHash: "4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99",
             index: 4,
-            amount: 18020000,
+            amount: "18020000",
             xfp: "73c5da0a",
             hdPath: "m/1852'/1815'/0'/0/1",
             address: "addr1qyz85693g4fr8c55mfyxhae8j2u04pydxrgqr73vmwpx3azv4dgkyrgylj5yl2m0jlpdpeswyyzjs0vhwvnl6xg9f7ssrxkz90",
         },
     ],
-    certKeys: [
+    extraSigners: [
         {
             keyHash: "e557890352095f1cf6fd2b7d1a28e3c3cb029f48cf34ff890a28d176",
             xfp: "73c5da0a",
@@ -92,7 +92,7 @@ options={{
 
 The QR code generated for the unsigned message above.
 
-![](/_media/sign-cardano-tx.png ':size=200')
+![](/_media/sign-cardano-tx.gif ':size=200')
 
 ## Get Signature from Keystone
 
