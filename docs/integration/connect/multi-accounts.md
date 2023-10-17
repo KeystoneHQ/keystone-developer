@@ -14,6 +14,7 @@ struct MultiAccounts {
     public var keys: Array<Account> // An array of public keys
     public var device: String?  // The device name, e.g. 'Keystone'
     public var deviceId: String?  // The device id, e.g. 28475c8d80f6c06bafbe46a7d1750f3fcf2565f7
+    public var deviceVersion: String?  // The device firmware version, e.g. '1.0.2'
 }
 
 struct Account {
@@ -45,6 +46,7 @@ data class MultiAccounts (
     val keys: Array<Account>,  // An array of public keys
     val device: String?,  // The device name, e.g. 'Keystone'
     val deviceId: String?,  // The device id, e.g. 28475c8d80f6c06bafbe46a7d1750f3fcf2565f7
+    val deviceVersion: String?,  // The device firmware version, e.g. '1.0.2'
 )
 
 data class Account(
@@ -75,6 +77,7 @@ interface MultiAccounts {
     keys: Account[]  // An array of public keys
     device?: string  // The device name, e.g. 'Keystone'
     deviceId?: string  // The device id, e.g. '28475c8d80f6c06bafbe46a7d1750f3fcf2565f7'
+    deviceVersion?: String  // The device firmware version, e.g. '1.0.2'
 }
 
 interface Account {
