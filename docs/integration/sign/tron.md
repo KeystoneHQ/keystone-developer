@@ -31,7 +31,7 @@ import KeystoneSDK
 let tronSignRequest = TronSignRequest(
     requestId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
     signData: "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a15418dfec1cde1fe6a9ec38a16c7d67073e3020851c0121541a614f803b6fd780986a42c78ec9c7f77e6ded13c2244a9059cbb0000000000000000000000009c0279f1bda9fc40a85f1b53c306602864533e7300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03",
-    path: "m/44'/195'/0'/0'/0",
+    path: "m/44'/195'/0'/0/0",
     xfp: "F23F9FD2",
     tokenInfo: TokenInfo(name: "TRON_USDT", symbol: "USDT", decimals: 6)
 )
@@ -67,9 +67,9 @@ import com.keystone.sdk.KeystoneSDK
 val tronSignRequest = TronSignRequest(
     requestId = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
     signData = "0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a15418dfec1cde1fe6a9ec38a16c7d67073e3020851c0121541a614f803b6fd780986a42c78ec9c7f77e6ded13c2244a9059cbb0000000000000000000000009c0279f1bda9fc40a85f1b53c306602864533e7300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03",
-    path = "m/44'/195'/0'/0'/0",
+    path = "m/44'/195'/0'/0/0",
     xfp = "F23F9FD2",
-    tokenInfo = TokenInfo("USDT", "TRON_USDT", 8)
+    tokenInfo = TokenInfo("USDT", "TRON_USDT", 6)
 )
 
 val keystoneSDK = KeystoneSDK()
@@ -97,23 +97,24 @@ An example of covert a Tron transaction data into QR code [here](https://github.
 #### **<span class="typescript">Web(TypeScript)</span>**
 
 ```jsx
-import KeystoneSDK, { KeystoneAptosSDK } from "@keystonehq/keystone-sdk"
+import KeystoneSDK from "@keystonehq/keystone-sdk"
 import {AnimatedQRCode} from "@keystonehq/animated-qr"
 
-let aptosSignRequest = {
-    requestId: "17467482-2654-4058-972D-F436EFAEB38E",
-    signData: "B5E97DB07FA0BD0E5598AA3643A9BC6F6693BDDC1A9FEC9E674A461EAA00B1931248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD0455000000000000000002000000000000000000000000000000000000000000000000000000000000000104636F696E087472616E73666572010700000000000000000000000000000000000000000000000000000000000000010A6170746F735F636F696E094170746F73436F696E0002201248CD3D5E09500ACB7082497DEC1B2690384C535F3882ED5D84392370AD04550880969800000000000A000000000000009600000000000000ACF63C640000000002",
-    signType: KeystoneAptosSDK.SignType.SingleSign,
-    accounts: [{
-        path: "m/44'/637'/0'/0'/0'",
-        xfp: "F23F9FD2"
-    }],
-    origin: "Petra"
+let tronSignRequest = {
+    requestId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
+    signData: '0a0207902208e1b9de559665c6714080c49789bb2c5aae01081f12a9010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412740a15418dfec1cde1fe6a9ec38a16c7d67073e3020851c0121541a614f803b6fd780986a42c78ec9c7f77e6ded13c2244a9059cbb0000000000000000000000009c0279f1bda9fc40a85f1b53c306602864533e7300000000000000000000000000000000000000000000000000000000000f424070c0b6e087bb2c90018094ebdc03',
+    path: "m/44'/195'/0'/0/0",
+    xfp: 'F23F9FD2',
+    tokenInfo: {
+        name: 'TRON_USDT',
+        symbol: 'USDT',
+        decimals: 6
+    }
 }
 
-const Aptos = () => {
+const Tron = () => {
     const keystoneSDK = new KeystoneSDK();
-    const ur = keystoneSDK.aptos.generateSignRequest(aptosSignRequest);
+    const ur = keystoneSDK.tron.generateSignRequest(tronSignRequest);
 
     return <AnimatedQRCode type={ur.type} cbor={ur.cbor.toString("hex")}/>
 }
