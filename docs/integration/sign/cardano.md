@@ -1,8 +1,5 @@
 # Cardano
 
-> [!WARNING|labelVisibility:hidden|iconVisibility:hidden|style:flat]
-> Not available in Keystone hardware wallet at the moment.
-
 ## Display Unsigned Transaction
 
 For passing an unsigned Cardano transaction or message to the Keystone hardware wallet,

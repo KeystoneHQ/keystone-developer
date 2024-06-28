@@ -1,7 +1,4 @@
-# Tron(WIP)
-
-> [!WARNING|labelVisibility:hidden|iconVisibility:hidden|style:flat]
-> Not available in Keystone hardware wallet at the moment.
+# Tron
 
 ## Display Unsigned Transaction
 

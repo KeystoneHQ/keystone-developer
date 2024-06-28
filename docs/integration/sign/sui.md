@@ -1,8 +1,5 @@
 # Sui
 
-> [!WARNING|labelVisibility:hidden|iconVisibility:hidden|style:flat]
-> Not available in Keystone hardware wallet at the moment.
-
 ## Display Unsigned Transaction
 
 For passing an unsigned Sui transaction or message to the Keystone hardware wallet,
