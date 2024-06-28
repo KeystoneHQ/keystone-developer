@@ -1,8 +1,5 @@
 # BitcoinCash
 
-> [!WARNING|labelVisibility:hidden|iconVisibility:hidden|style:flat]
-> Not available in Keystone hardware wallet at the moment.
-
 ## Display Unsigned Transaction
 
 For passing an unsigned BCH transaction to the Keystone hardware wallet,
